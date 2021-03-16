@@ -1,0 +1,110 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <div class="form-group">
+        <h1>Saisi offre</h1>
+    </div>
+    <div class="form-group">
+        <label for="">Date début de l'offre:</label>
+        <input [formControl]="myForm.controls['date']" type="date">
+    </div>
+    <div class="form-group">
+        <label for="">Nom Offre:</label>
+        <input [formControl]="myForm.controls['name']" type="text">
+    </div>
+    <div class="form-group">
+        <label for="">Durée de validité (en Jours):</label>
+        <input [formControl]="myForm.controls['duration']" type="text">
+    </div>
+    <div class="form-group">
+        <label for="">Prix:</label>
+        <input [formControl]="myForm.controls['price']" type="number">
+    </div>
+    <div class="form-group">
+        <label for="">Offre parents (Priorité):</label>
+        <div class="row">
+            <div>
+                <select type="text">
+                    <option value="">Net 1Go</option>
+                    <option value="">Net 2Go</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <table class="table">
+            <tr>
+                <th>Nom parent</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button class="btn btn-danger">Supprimer</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <label for="">Types d'offre:</label>
+        <div class="row">
+            <div>
+                <select type="text">
+                    <option *ngFor="let offertype of allOfferTypes" value="{{offertype.id}}">{{offertype.name}}</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" placeholder="Valeur">
+            </div>
+            <div>
+                <select>
+                    <option value="">mn</option>
+                    <option value="">nombre</option>
+                    <option value="">Mo</option>
+                    <option value="">Ko</option>
+                    <option value="">Go</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" placeholder="Prix intra">
+            </div>
+            <div>
+                <input type="text" placeholder="Prix extra">
+            </div>
+            <div>
+                <select type="text">
+                    <option value="">Et/Ou</option>
+                    <option value="">Et</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <table class="table">
+            <tr>
+                <th>Type offre</th>
+                <th>Valeur</th>
+                <th>Unité</th>
+                <th>Prix Interne</th>
+                <th>Prix Externe</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button class="btn btn-danger">Supprimer</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+   
+    <div class="form-group">
+        <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+    </div>
+</form>
