@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { InsertConfComponent } from './components/insert-conf/insert-conf.component';
-import { GlobalConfComponent } from './global-conf.component';
+import { ConfigOpComponent } from './config-op.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GlobalConfComponent
+    component: ConfigOpComponent
   },
   {
-    path: 'insert',
+    path:'insert',
     component: InsertConfComponent
   }
 ];
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GlobalConfRoutingModule { }
+export class ConfigOpRoutingModule { }

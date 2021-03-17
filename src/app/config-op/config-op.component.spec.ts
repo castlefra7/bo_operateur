@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GlobalConfComponent } from './global-conf.component';
+import { ConfigOpComponent } from './config-op.component';
 
-describe('GlobalConfComponent', () => {
-  let component: GlobalConfComponent;
-  let fixture: ComponentFixture<GlobalConfComponent>;
+describe('ConfigOpComponent', () => {
+  let component: ConfigOpComponent;
+  let fixture: ComponentFixture<ConfigOpComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GlobalConfComponent ]
+      declarations: [ ConfigOpComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GlobalConfComponent);
+    fixture = TestBed.createComponent(ConfigOpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

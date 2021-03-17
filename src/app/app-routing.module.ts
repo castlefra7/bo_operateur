@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: 'conf',
-    loadChildren: () => import('./global-conf/global-conf.module').then(md => md.GlobalConfModule)
+    loadChildren: () => import('./config-op/config-op.module').then(md => md.ConfigOpModule)
   },
   {
     path: 'mobile',
