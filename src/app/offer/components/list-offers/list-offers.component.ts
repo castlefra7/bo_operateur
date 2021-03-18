@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Offer } from '../../offer';
+import { OfferService } from '../../services/offer.service';
 
 @Component({
   selector: 'app-list-offers',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListOffersComponent implements OnInit {
 
-  constructor() { }
+  offers: Offer[] | undefined = [];
+
+  constructor(private offer: OfferService) { }
 
   ngOnInit(): void {
+    this.offer.findAll()
+      .subscribe(
+        data =>  this.offers = data.data );
   }
-
 }

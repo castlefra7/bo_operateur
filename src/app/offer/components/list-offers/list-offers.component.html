@@ -1,17 +1,30 @@
 <h2>Liste des offres</h2>
 <table class="table">
     <tr>
-        <th>Date début validité</th>
         <th>Nom</th>
         <th>Prix</th>
-        <th>Validité (en Jours)</th>
-        <th>Description</th>
+        <th>Validité</th>
+        <th>Limitation</th>
+        <th>Montants</th>
     </tr>
-    <tr>
-        <td>15 Mar. 2021</td>
-        <td>Net 10 Go</td>
-        <td>25 000 Ar</td>
-        <td>30</td>
-        <td>100 Mo Internet et 10 mn appel</td>
+    <tr *ngFor="let offer of offers">
+        <td>{{ offer.name }}</td>
+        <td>{{ offer.price }} Ar</td>
+        <td> {{ offer.validityDay }} jours</td>
+        <td>{{ offer.limitation.buyingLimit }} fois sur {{ offer.limitation.durationInDays }} j </td>
+        <td>
+            <table class="table">
+                <tr>
+                    <th>Application</th>
+                    <th>Montant</th>
+                    <th>Valeur</th>
+                </tr>
+                <tr *ngFor="let montant of offer.amounts">
+                    <td>{{ montant.application.name }}</td>                    
+                    <td class="right">{{ montant.value }}</td>     
+                    <td>{{ montant.application.unit.suffix }}</td>                   
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>

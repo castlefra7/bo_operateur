@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <h1>Saisi offre</h1>
     </div>
@@ -12,7 +12,15 @@
     </div>
     <div class="form-group">
         <label for="">Durée de validité (en Jours):</label>
-        <input [formControl]="myForm.controls['duration']" type="text">
+        <input [formControl]="myForm.controls['validityDay']" type="text">
+    </div>
+    <div class="form-group">
+        <label for="">Limite Achat par période:</label>
+        <input [formControl]="myForm.controls['buyingLimit']" type="number">
+    </div>
+    <div class="form-group">
+        <label for="">Période de limite d'achat:</label>
+        <input [formControl]="myForm.controls['durationInDays']" type="number">
     </div>
     <div class="form-group">
         <label for="">Prix:</label>
@@ -45,31 +53,40 @@
             </tr>
         </table>
     </div>
+</form>
+
+    <!-- tapitra -->
+<form [formGroup]="amountForm" (ngSubmit)="onAmountsSub()">
     <div class="form-group">
         <label for="">Types d'offre:</label>
         <div class="row">
             <div>
-                <select type="text">
-                    <option *ngFor="let offertype of allOfferTypes" value="{{offertype.id}}">{{offertype.name}}</option>
+                <select type="text" name="applicationName" [formControl]="amountForm.controls['appName']">
+                    <option value="Facebook">
+                        Facebook
+                    </option>
+                    <option value="Internet">
+                        Internet
+                    </option>
                 </select>
             </div>
             <div>
-                <input type="text" placeholder="Valeur">
+                <input type="number" name="value"  placeholder="Valeur" [formControl]="amountForm.controls['value']">
             </div>
             <div>
-                <select>
-                    <option value="">mn</option>
-                    <option value="">nombre</option>
-                    <option value="">Mo</option>
-                    <option value="">Ko</option>
-                    <option value="">Go</option>
+                <select [formControl]="amountForm.controls['unitName']">
+                    <option value="mn">mn</option>
+                    <option value="nomber">nombre</option>
+                    <option value="Mo">Mo</option>
+                    <option value="Ko">Ko</option>
+                    <option value="Go">Go</option>
                 </select>
             </div>
             <div>
-                <input type="text" placeholder="Prix intra">
+                <input type="number" name="intra" placeholder="Prix intra" [formControl]="amountForm.controls['intra']">
             </div>
             <div>
-                <input type="text" placeholder="Prix extra">
+                <input type="number" name="extra" placeholder="Prix extra" [formControl]="amountForm.controls['extra']">
             </div>
             <div>
                 <select type="text">
@@ -88,23 +105,19 @@
                 <th>Type offre</th>
                 <th>Valeur</th>
                 <th>Unité</th>
-                <th>Prix Interne</th>
-                <th>Prix Externe</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let amount of addedAmounts">
+                <td>{{ amount.application.name }}</td>
+                <td>{{ amount.value }}</td>
+                <td>{{ amount.application.unit.suffix }} </td>
                 <td>
                     <button class="btn btn-danger">Supprimer</button>
                 </td>
             </tr>
         </table>
     </div>
-   
-    <div class="form-group">
-        <button type="submit" class="btn btn-lg btn-primary">Valider</button>
-    </div>
 </form>
+
+<div class="form-group">
+    <button (click)="onSubmit()" type="submit" class="btn btn-lg btn-primary">Valider</button>
+</div>
