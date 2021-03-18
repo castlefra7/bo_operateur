@@ -5,13 +5,15 @@
         <th>Prix</th>
         <th>Validité</th>
         <th>Limitation</th>
+        <th>Priorité</th>
         <th>Montants</th>
     </tr>
     <tr *ngFor="let offer of offers">
         <td>{{ offer.name }}</td>
         <td>{{ offer.price }} Ar</td>
         <td> {{ offer.validityDay }} jours</td>
-        <td>{{ offer.limitation.buyingLimit }} fois sur {{ offer.limitation.durationInDays }} j </td>
+        <td>{{ offer.limitation!.buyingLimit }} fois sur {{ offer.limitation!.durationInDays }} j </td>
+        <td>{{ offer.priority }}</td>
         <td>
             <table class="table">
                 <tr>
@@ -20,9 +22,9 @@
                     <th>Valeur</th>
                 </tr>
                 <tr *ngFor="let montant of offer.amounts">
-                    <td>{{ montant.application.name }}</td>                    
+                    <td>{{ montant.application!.name }}</td>                    
                     <td class="right">{{ montant.value }}</td>     
-                    <td>{{ montant.application.unit.suffix }}</td>                   
+                    <td>{{ montant.application!.unit!.suffix }}</td>                   
                 </tr>
             </table>
         </td>

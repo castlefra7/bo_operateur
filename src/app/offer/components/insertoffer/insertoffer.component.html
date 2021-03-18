@@ -27,31 +27,8 @@
         <input [formControl]="myForm.controls['price']" type="number">
     </div>
     <div class="form-group">
-        <label for="">Offre parents (Priorité):</label>
-        <div class="row">
-            <div>
-                <select type="text">
-                    <option value="">Net 1Go</option>
-                    <option value="">Net 2Go</option>
-                </select>
-            </div>
-            <div>
-                <button class="btn btn-primary">Ajouter</button>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <table class="table">
-            <tr>
-                <th>Nom parent</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button class="btn btn-danger">Supprimer</button>
-                </td>
-            </tr>
-        </table>
+        <label for="">Priorité:</label>
+        <input [formControl]="myForm.controls['priority']" type="number">
     </div>
 </form>
 
@@ -107,9 +84,9 @@
                 <th>Unité</th>
             </tr>
             <tr *ngFor="let amount of addedAmounts">
-                <td>{{ amount.application.name }}</td>
+                <td>{{ amount.application!.name }}</td>
                 <td>{{ amount.value }}</td>
-                <td>{{ amount.application.unit.suffix }} </td>
+                <td>{{ amount.application!.unit!.suffix }} </td>
                 <td>
                     <button class="btn btn-danger">Supprimer</button>
                 </td>

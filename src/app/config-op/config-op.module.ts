@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConfigOpRoutingModule } from './config-op-routing.module';
 import { InsertConfComponent } from './components/insert-conf/insert-conf.component';
 import { ConfigOpComponent } from './config-op.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -10,7 +11,8 @@ import { ConfigOpComponent } from './config-op.component';
   declarations: [InsertConfComponent, ConfigOpComponent],
   imports: [
     CommonModule,
-    ConfigOpRoutingModule
+    ConfigOpRoutingModule,
+    FormsModule
   ]
 })
 export class ConfigOpModule { }

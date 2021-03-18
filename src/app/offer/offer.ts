@@ -12,7 +12,9 @@ export interface Offer {
     id?: number | undefined,
     name?: string,
     createdAt?: string,
-    valididtyDay?: number,
+    price?: number,
+    validityDay?: number,
+    priority?: number,
     limitation?: Limitation,
     amounts?: Amount[]
 }

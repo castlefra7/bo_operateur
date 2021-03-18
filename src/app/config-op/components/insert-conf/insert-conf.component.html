@@ -1,19 +1,19 @@
 <div class="container">
     <div class="card">
-        <form action="">
+        <form>
             <div class="form-group">
                 <h1>Saisi tarif appel</h1>
             </div>
             <div class="form-group">
                 <label for="">Prix Appel interne (/s):</label>
-                <input type="text">
+                <input type="number" [(ngModel)]="tarifAppel.amount_interior" name="intra">
             </div>
             <div class="form-group">
                 <label for="">Prix Appel externe (/s):</label>
-                <input type="text">
+                <input type="number" [(ngModel)]="tarifAppel.amount_exterior" name="extra">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+                <button (click)="validateTarifAppel($event)" type="submit" class="btn btn-lg btn-primary">Valider</button>
             </div>
         </form>
     </div>
@@ -24,14 +24,14 @@
             </div>
             <div class="form-group">
                 <label for="">Prix Message interne (/140 caract.):</label>
-                <input type="text">
+                <input type="text" name="amount_interior" [(ngModel)]="tarifMessage.amount_interior">
             </div>
             <div class="form-group">
                 <label for="">Prix Message externe (/140 caract.):</label>
-                <input type="text">
+                <input type="text" name="amount_exterior" [(ngModel)]="tarifMessage.amount_exterior">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+                <button (click)="validateTarifMessage($event)"  type="submit" class="btn btn-lg btn-primary">Valider</button>
             </div>
         </form>
     </div>
@@ -42,10 +42,10 @@
             </div>
             <div class="form-group">
                 <label for="">Prix Internet (/ko):</label>
-                <input type="text">
+                <input type="text" name="amount_interior" [(ngModel)]="tarifInternet.amount_interior">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+                <button (click)="validateTarifInternet($event)" type="submit" class="btn btn-lg btn-primary">Valider</button>
             </div>
         </form>
     </div>
@@ -56,18 +56,18 @@
             </div>
             <div class="form-group">
                 <label for="">Montant minimum:</label>
-                <input type="text">
+                <input type="text" name="amount_min" [(ngModel)]="fraisMobileMoney.amount_min">
             </div>
             <div class="form-group">
                 <label for="">Montant maximum:</label>
-                <input type="text">
+                <input type="text" name="amount_max" [(ngModel)]="fraisMobileMoney.amount_max">
             </div>
             <div class="form-group">
                 <label for="">Frais:</label>
-                <input type="text">
+                <input type="text" name="amount_fee" [(ngModel)]="fraisMobileMoney.amount_fee">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-lg btn-primary">Valider</button>
+                <button (click)="validateFraisMobileMoney($event)" type="submit" class="btn btn-lg btn-primary">Valider</button>
             </div>
         </form>
     </div>
