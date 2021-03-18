@@ -1,8 +1,5 @@
 <div class="container">
-    <div class="actions">
-        <a [routerLink]="['insert']">Saisi de transfert</a>
-    </div>
     <div>
-        <app-deposits-list></app-deposits-list>
+        <app-deposits-list (sendUpdate)="updateDeposit($event)" [allDeposits]="allDeposits"></app-deposits-list>
     </div>
 </div>
