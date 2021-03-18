@@ -4,12 +4,12 @@
         <th>Numéro</th>
         <th>Montant</th>
     </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr *ngFor="let deposit of allDeposits">
+        <td>{{deposit.created_at}}</td>
+        <td>{{deposit.phone_number}}</td>
+        <td>{{deposit.amount}}</td>
         <td>
-            <button class="btn btn-primary">Valider</button>
+            <button (click)="update(deposit.id)" class="btn btn-primary">Valider</button>
         </td>
     </tr>
 </table>
