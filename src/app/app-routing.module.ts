@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'mobile',
     loadChildren: () => import('./mobile-money/mobile-money.module').then(md => md.MobileMoneyModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then(md => md.SignupModule)
   }
 ];
 

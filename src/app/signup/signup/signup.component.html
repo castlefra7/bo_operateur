@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="card">
+        <form>
+            <div class="form-group">
+                <h1>Inscription</h1>
+            </div>
+            <div class="form-group">
+                <label for="">Nom :</label>
+                <input type="text" name="name" [(ngModel)]="newCustomer.name">
+            </div>
+            <div class="form-group">
+                <label for="">Email:</label>
+                <input type="email" name="extra" [(ngModel)]="newCustomer.email">
+            </div>
+            <div class="form-group">
+                <label for="">Mot de passe:</label>
+                <input type="text" name="password" [(ngModel)]="newCustomer.password">
+            </div>
+            <div class="form-group">
+                <button (click)="signup($event)" type="submit" class="btn btn-lg btn-primary">S'inscrire</button>
+            </div>
+        </form>
+        <div *ngIf="succes" class="">
+            <h3>Votre numero : {{ phoneNumber }}</h3>
+        </div>
+    </div>
+</div>
