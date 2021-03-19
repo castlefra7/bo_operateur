@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { cpuUsage } from 'node:process';
 import { Deposit, MobileMoneyService } from './services/mobile-money.service';
 
 

@@ -1,15 +1,22 @@
 
-export interface TarifInternet {
+export interface Tarif {
     amount_interior?: number,
     application_id?: number,
     date?: string,
 }
 
-export interface TarifAppel extends TarifInternet {
+export interface TarifInternet {
+    amount?: number,
+    date?: string,
+}
+
+export interface TarifAppel extends Tarif {
     amount_exterior?: number,
 }
   
-export interface TarifMessage extends TarifAppel {}
+export interface TarifMessage extends TarifAppel {
+    unit?: number
+}
 
 export interface FraisMobileMoney {
     date?: string,

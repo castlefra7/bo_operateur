@@ -18,7 +18,7 @@ export class TarificationService {
         "Content-Type": "application/json"
       }
     };
-    return this.http.post(`${this.url}/pricings`, newTarif, options);
+    return this.http.post(`${this.url}/pricings/calls`, newTarif, options);
   }
 
   changeTarifMessage(newTarif: TarifMessage) {
@@ -27,7 +27,7 @@ export class TarificationService {
         "Content-Type": "application/json"
       }
     };
-    return this.http.post(`${this.url}/pricings`, newTarif, options);
+    return this.http.post(`${this.url}/pricings/messages`, newTarif, options);
   }
 
   changeTarifInternet(newTarif: TarifInternet) {

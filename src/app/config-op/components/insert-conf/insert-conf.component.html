@@ -23,12 +23,16 @@
                 <h1>Saisi tarif message</h1>
             </div>
             <div class="form-group">
-                <label for="">Prix Message interne (/140 caract.):</label>
+                <label for="">Prix Message interne:</label>
                 <input type="text" name="amount_interior" [(ngModel)]="tarifMessage.amount_interior">
             </div>
             <div class="form-group">
-                <label for="">Prix Message externe (/140 caract.):</label>
+                <label for="">Prix Message externe:</label>
                 <input type="text" name="amount_exterior" [(ngModel)]="tarifMessage.amount_exterior">
+            </div>
+            <div class="form-group">
+                <label for="">Message longueur:</label>
+                <input type="text" name="unit" [(ngModel)]="tarifMessage.unit">
             </div>
             <div class="form-group">
                 <button (click)="validateTarifMessage($event)"  type="submit" class="btn btn-lg btn-primary">Valider</button>
@@ -42,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label for="">Prix Internet (/ko):</label>
-                <input type="text" name="amount_interior" [(ngModel)]="tarifInternet.amount_interior">
+                <input type="text" name="amount" [(ngModel)]="tarifInternet.amount">
             </div>
             <div class="form-group">
                 <button (click)="validateTarifInternet($event)" type="submit" class="btn btn-lg btn-primary">Valider</button>
