@@ -3,6 +3,11 @@ export interface HttpRespOffer {
     data?: Offer[]
 }
 
+export interface HttpRespApp {
+    status?: Status,
+    data?: Application[]
+}
+
 export interface Status {
     code?: number,
     message?: string
@@ -32,7 +37,9 @@ export interface Amount {
 export interface Application {
     id?: number | undefined,
     name?: string,
-    unit?: Unit
+    t_type?: string,
+    internet_application_id?: number
+    unit?: Unit,
 }
 
 export interface Unit {

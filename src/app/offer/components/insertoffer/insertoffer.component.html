@@ -1,100 +1,119 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <h1>Saisi offre</h1>
-    </div>
-    <div class="form-group">
-        <label for="">Date début de l'offre:</label>
-        <input [formControl]="myForm.controls['date']" type="date">
-    </div>
-    <div class="form-group">
-        <label for="">Nom Offre:</label>
-        <input [formControl]="myForm.controls['name']" type="text">
-    </div>
-    <div class="form-group">
-        <label for="">Durée de validité (en Jours):</label>
-        <input [formControl]="myForm.controls['validityDay']" type="text">
-    </div>
-    <div class="form-group">
-        <label for="">Limite Achat par période:</label>
-        <input [formControl]="myForm.controls['buyingLimit']" type="number">
-    </div>
-    <div class="form-group">
-        <label for="">Période de limite d'achat:</label>
-        <input [formControl]="myForm.controls['durationInDays']" type="number">
-    </div>
-    <div class="form-group">
-        <label for="">Prix:</label>
-        <input [formControl]="myForm.controls['price']" type="number">
-    </div>
-    <div class="form-group">
-        <label for="">Priorité:</label>
-        <input [formControl]="myForm.controls['priority']" type="number">
-    </div>
+  <div class="form-group">
+    <h1>Saisi offre</h1>
+  </div>
+  <div class="form-group">
+    <label>Date début de l'offre:</label>
+    <input [formControl]="myForm.controls['date']" type="date" />
+  </div>
+  <div class="form-group">
+    <label>Nom Offre:</label>
+    <input [formControl]="myForm.controls['name']" type="text" />
+  </div>
+  <div class="form-group">
+    <label>Durée de validité (en Jours):</label>
+    <input [formControl]="myForm.controls['validityDay']" type="text" />
+  </div>
+  <div class="form-group">
+    <label>Limite Achat par période:</label>
+    <input [formControl]="myForm.controls['buyingLimit']" type="number" />
+  </div>
+  <div class="form-group">
+    <label>Période de limite d'achat:</label>
+    <input [formControl]="myForm.controls['durationInDays']" type="number" />
+  </div>
+  <div class="form-group">
+    <label>Prix:</label>
+    <input [formControl]="myForm.controls['price']" type="number" />
+  </div>
+  <div class="form-group">
+    <label>Priorité:</label>
+    <input [formControl]="myForm.controls['priority']" type="number" />
+  </div>
 </form>
 
-    <!-- tapitra -->
+<!-- tapitra -->
 <form [formGroup]="amountForm" (ngSubmit)="onAmountsSub()">
-    <div class="form-group">
-        <label for="">Types d'offre:</label>
-        <div class="row">
-            <div>
-                <select type="text" name="applicationName" [formControl]="amountForm.controls['appName']">
-                    <option value="Facebook">
-                        Facebook
-                    </option>
-                    <option value="Internet">
-                        Internet
-                    </option>
-                </select>
-            </div>
-            <div>
-                <input type="number" name="value"  placeholder="Valeur" [formControl]="amountForm.controls['value']">
-            </div>
-            <div>
-                <select [formControl]="amountForm.controls['unitName']">
-                    <option value="mn">mn</option>
-                    <option value="nomber">nombre</option>
-                    <option value="Mo">Mo</option>
-                    <option value="Ko">Ko</option>
-                    <option value="Go">Go</option>
-                </select>
-            </div>
-            <div>
-                <input type="number" name="intra" placeholder="Prix intra" [formControl]="amountForm.controls['intra']">
-            </div>
-            <div>
-                <input type="number" name="extra" placeholder="Prix extra" [formControl]="amountForm.controls['extra']">
-            </div>
-            <div>
+  <div class="form-group">
+    <label>Types d'offre:</label>
+    <div class="row">
+      <div>
+        <select
+          type="text"
+          name="applicationName"
+          [formControl]="amountForm.controls['appName']"
+        >
+          <option  value="Internet">
+            Internet
+          </option>
+          <option  value="Facebook">
+            Facebook
+          </option>
+        </select>
+      </div>
+      <div>
+        <input
+          type="number"
+          name="value"
+          placeholder="Valeur"
+          [formControl]="amountForm.controls['value']"
+        />
+      </div>
+      <div>
+        <select [formControl]="amountForm.controls['unitName']">
+          <option *ngFor="let unit of units$ | async" [value]="unit.suffix">
+            {{ unit.suffix }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <input
+          type="number"
+          name="intra"
+          placeholder="Prix intra"
+          [formControl]="amountForm.controls['intra']"
+        />
+      </div>
+      <div>
+        <input
+          type="number"
+          name="extra"
+          placeholder="Prix extra"
+          [formControl]="amountForm.controls['extra']"
+        />
+      </div>
+      <!-- <div>
                 <select type="text">
                     <option value="">Et/Ou</option>
                     <option value="">Et</option>
                 </select>
-            </div>
-            <div>
-                <button class="btn btn-primary">Ajouter</button>
-            </div>
-        </div>
+            </div> -->
+      <div>
+        <button class="btn btn-primary">Ajouter</button>
+      </div>
     </div>
-    <div class="form-group">
-        <table class="table">
-            <tr>
-                <th>Type offre</th>
-                <th>Valeur</th>
-                <th>Unité</th>
-            </tr>
-            <tr *ngFor="let amount of addedAmounts">
-                <td>{{ amount.application!.name }}</td>
-                <td>{{ amount.value }}</td>
-                <td>{{ amount.application!.unit!.suffix }} </td>
-                <td>
-                    <button class="btn btn-danger">Supprimer</button>
-                </td>
-            </tr>
-        </table>
-    </div>
+  </div>
+  <div class="form-group">
+    <table class="table">
+      <tr>
+        <th>Type offre</th>
+        <th>Valeur</th>
+        <th>Unité</th>
+      </tr>
+      <tr *ngFor="let amount of addedAmounts">
+        <td>{{ amount.application!.name }}</td>
+        <td>{{ amount.value }}</td>
+        <td>{{ amount.application!.unit!.suffix }}</td>
+        <td>
+          <button class="btn btn-danger">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+  </div>
 </form>
 
 <div class="form-group">
-    <button (click)="onSubmit()" type="submit" class="btn btn-lg btn-primary">Valider</button>
+  <button (click)="onSubmit()" type="submit" class="btn btn-lg btn-primary">
+    Valider
+  </button>
 </div>

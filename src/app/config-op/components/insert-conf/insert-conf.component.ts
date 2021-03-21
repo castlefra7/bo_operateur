@@ -45,7 +45,10 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     this.tarifMessage.date = new Date(Date.now()).toISOString();
     this.tarifMessage.application_id = 2;
     this.changeMessageSub$ = this.service.changeTarifMessage(this.tarifMessage)
-      .subscribe(data => console.log(data));
+      .subscribe(
+        data => console.log(data),
+        error => console.log(error)
+        );
   }
 
   validateTarifInternet(event: any): void {

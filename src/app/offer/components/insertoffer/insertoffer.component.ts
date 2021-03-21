@@ -1,9 +1,11 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Amount, Offer } from '../../offer';
+import { Observable } from 'rxjs';
+import { Amount, Application, Offer, Unit } from '../../offer';
+import { ApplicationService } from '../../services/application.service';
 import { OfferService, OfferType } from '../../services/offer.service';
+import { UnitService } from '../../services/unit.service';
 
 @Component({
   selector: 'app-insertoffer',
@@ -16,22 +18,27 @@ export class InsertofferComponent implements OnInit {
   allOfferTypes: OfferType[];
 
   addedAmounts : Amount[] = [];
+  applications : Application[] = [];
+
+  units$! : Observable<Unit[]>;
 
   constructor(
-    public fb: FormBuilder, 
-    public offerService: OfferService,
-    public router: Router 
+    private fb: FormBuilder, 
+    private offerService: OfferService,
+    private unitService : UnitService,
+    private appService : ApplicationService,
+    private router: Router 
     ) {
     this.allOfferTypes = offerService.getAllOfferTypes();
     this.myForm = fb.group(
       {
-        'name': ['', Validators.required],
+        'name': ['Test', Validators.required],
         'date': [new Date()],
-        'validityDay': [0, Validators.required],
-        'price': [0, Validators.required],
-        'buyingLimit': [0, Validators.required],
-        'durationInDays': [0, Validators.required],
-        'priority': [0, Validators.required]
+        'validityDay': [7, Validators.required],
+        'price': [1000, Validators.required],
+        'buyingLimit': [2, Validators.required],
+        'durationInDays': [7, Validators.required],
+        'priority': [1, Validators.required]
       }
     );
     this.amountForm = fb.group({
@@ -44,7 +51,12 @@ export class InsertofferComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.allOfferTypes = this.offerService.getAllOfferTypes();
+    this.appService.findAll()
+      .subscribe(data => {
+        this.applications = data.data!
+        console.log(this.applications);
+      });
+      this.units$ = this.unitService.findAll();
   }
 
   onSubmit(): void {
@@ -60,11 +72,10 @@ export class InsertofferComponent implements OnInit {
       limitation : {
         buyingLimit : value.buyingLimit,
         durationInDays: value.durationInDays
-      }
+      },
     };
     console.log(newOffer);
-    this.offerService.insert(newOffer).subscribe(data => console.log(data));
-    this.router.navigateByUrl('offers');
+    // this.offerService.insert(newOffer).subscribe(data => console.log(data));
   }
   
   onAmountsSub() : void {
@@ -73,6 +84,8 @@ export class InsertofferComponent implements OnInit {
       application : {
         id : 1,
         name : value.appName,
+        t_type : "i",
+        internet_application_id : 1,
         unit : {
           id: 1,
           suffix : value.unitName,
