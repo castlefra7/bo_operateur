@@ -31,7 +31,18 @@ export interface Limitation {
 
 export interface Amount {
     application?: Application,
-    value?: number
+    value?: number,
+    utilization?: Utilization,
+}
+
+export interface Utilization {
+    intra?: Price,
+    extra?: Price,
+}
+
+export interface Price {
+    price?: number,
+    per?: string
 }
 
 export interface Application {

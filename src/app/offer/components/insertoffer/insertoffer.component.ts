@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Console } from 'node:console';
 import { Observable } from 'rxjs';
 import { Amount, Application, Offer, Unit } from '../../offer';
 import { ApplicationService } from '../../services/application.service';
@@ -92,6 +91,16 @@ export class InsertofferComponent implements OnInit {
         unit : {
           id: 1,
           suffix : value.unitName,
+        }
+      },
+      utilization : {
+        intra : {
+          price : value.intra,
+          per : "sec"
+        },
+        extra : {
+          price : value.extra,
+          per : "sec"
         }
       },
       value : value.value,
