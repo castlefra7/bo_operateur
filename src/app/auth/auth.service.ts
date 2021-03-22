@@ -17,6 +17,7 @@ export interface HttpAuthResp {
 export class AuthService {
 
   AUTH_KEY = "AuthOperateur";
+  ADMIN_AUTH_KEY = "AuthAdmin";
 
   readonly url ="http://localhost:8080";
 
@@ -37,12 +38,29 @@ export class AuthService {
       , options);
   }
 
+  loginAsAdmin(name: string, pwd: string) : Observable<HttpAuthResp>{
+    const options = {
+      headers : {
+        "Content-Type": "application/json"
+      }
+    };
+    return this.http.post<HttpAuthResp>(
+      `${this.url}/auth/signin/admin`, 
+      { name : name, password : pwd }
+      , options);
+  }
+
   isLoggedIn() : boolean {
     return localStorage.getItem(this.AUTH_KEY) != null;
   }
 
   logout () : void {
     localStorage.removeItem(this.AUTH_KEY);
+    localStorage.removeItem(this.ADMIN_AUTH_KEY);
     this.router.navigateByUrl("");
+  }
+
+  isLoggedInAsAdmin() : boolean {
+    return localStorage.getItem(this.ADMIN_AUTH_KEY) != null
   }
 }

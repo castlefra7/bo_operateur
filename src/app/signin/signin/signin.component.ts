@@ -19,6 +19,8 @@ export class SigninComponent implements OnInit {
 
   credentials : Credential = {};
 
+  admin : Credential = {};
+
   constructor(
     private auth : AuthService,
     private route : Router
@@ -35,6 +37,21 @@ export class SigninComponent implements OnInit {
             if (data.status?.code != 500) {
               localStorage.setItem(this.auth.AUTH_KEY, data.token!);
               this.route.navigateByUrl("");
+            }
+        });
+    }
+  }
+
+  signinAdmin(event : any) {
+    console.log("ato");
+    event.preventDefault();
+    if (this.admin.name != null && this.admin.pwd != null) {
+      this.auth.loginAsAdmin(this.admin.name!, this.admin.pwd)
+        .subscribe(data => {
+            if (data.status?.code != 500) {
+              localStorage.setItem(this.auth.ADMIN_AUTH_KEY, data.token!);
+              this.route.navigateByUrl("");
+              console.log(data);
             }
         });
     }

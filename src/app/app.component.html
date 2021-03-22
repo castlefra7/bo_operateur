@@ -13,12 +13,12 @@
       <div class="elements">
         <ul>
           <li><a [routerLink]="['']">Accueil</a></li>
-          <li *ngIf="auth.isLoggedIn()" ><a [routerLink]="['offers']">Offres</a></li>
-          <li *ngIf="auth.isLoggedIn()" ><a [routerLink]="['conf']">Tarifications</a></li>
-          <li *ngIf="auth.isLoggedIn()" ><a [routerLink]="['mobile']">Mobile money</a></li>
-          <li *ngIf="!auth.isLoggedIn()"><a [routerLink]="['signup']">Inscription</a></li>
-          <li *ngIf="!auth.isLoggedIn()"><a [routerLink]="['signin']">Login</a></li>
-          <li *ngIf="auth.isLoggedIn()" ><a (click)="auth.logout()">Logout</a></li>
+          <li *ngIf="auth.isLoggedInAsAdmin()" ><a [routerLink]="['offers']">Offres</a></li>
+          <li *ngIf="auth.isLoggedInAsAdmin()" ><a [routerLink]="['conf']">Tarifications</a></li>
+          <li *ngIf="auth.isLoggedInAsAdmin()" ><a [routerLink]="['mobile']">Mobile money</a></li>
+          <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a [routerLink]="['signup']">Inscription</a></li>
+          <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a [routerLink]="['signin']">Login</a></li>
+          <li *ngIf="auth.isLoggedIn() || auth.isLoggedInAsAdmin()" ><a (click)="auth.logout()">Logout</a></li>
         </ul>
       </div>
   </div>

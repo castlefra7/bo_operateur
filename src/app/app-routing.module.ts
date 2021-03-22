@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminAuthGuard } from './auth/admin-auth.guard';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
@@ -9,17 +10,17 @@ const routes: Routes = [
   },
   {
     path: 'offers',
-    canActivate : [AuthGuard],
+    canActivate : [AdminAuthGuard],
     loadChildren: () => import("./offer/offer.module").then(md => md.OfferModule)
   },
   {
     path: 'conf',
-    canActivate : [AuthGuard],
+    canActivate : [AdminAuthGuard],
     loadChildren: () => import('./config-op/config-op.module').then(md => md.ConfigOpModule)
   },
   {
     path: 'mobile',
-    canActivate : [AuthGuard],
+    canActivate : [AdminAuthGuard],
     loadChildren: () => import('./mobile-money/mobile-money.module').then(md => md.MobileMoneyModule)
   },
   {
