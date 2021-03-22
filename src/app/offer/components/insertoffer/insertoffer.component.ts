@@ -75,7 +75,7 @@ export class InsertofferComponent implements OnInit {
       },
     };
     console.log(newOffer);
-    // this.offerService.insert(newOffer).subscribe(data => console.log(data));
+    this.offerService.insert(newOffer).subscribe(data => console.log(data));
   }
   
   onAmountsSub() : void {
