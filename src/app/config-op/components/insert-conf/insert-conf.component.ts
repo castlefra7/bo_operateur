@@ -9,21 +9,26 @@ import { FraisMobileMoney, TarifAppel, TarifInternet, TarifMessage } from '../..
 })
 export class InsertConfComponent implements OnInit, OnDestroy {
 
-  tarifAppel : TarifAppel = {};
-  tarifMessage : TarifMessage = {};
-  tarifInternet : TarifInternet = {};
-  fraisMobileMoney : FraisMobileMoney = {};
+  tarifAppel: TarifAppel = {};
+  tarifMessage: TarifMessage = {};
+  tarifInternet: TarifInternet = {};
+  fraisMobileMoney: FraisMobileMoney = {};
 
-  changeAppelSub$ : any;
-  changeMessageSub$ : any;
-  changeInternetSub$ : any;
-  changeMobileMoneySub$ : any;
+  changeAppelSub$: any;
+  changeMessageSub$: any;
+  changeInternetSub$: any;
+  changeMobileMoneySub$: any;
+  currDate: string;
 
-  constructor(private service : TarificationService) { }
+  constructor(private service: TarificationService) {
+    var dt = new Date(Date.now());
+    this.currDate = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()} ${dt.getHours()}:${dt.getMinutes()}`;
+  }
 
   ngOnInit(): void {
+
   }
-    
+
   ngOnDestroy(): void {
     if (this.changeAppelSub$) this.changeAppelSub$.unsubscribe();
     if (this.changeMessageSub$) this.changeMessageSub$.unsubscribe();
@@ -34,7 +39,8 @@ export class InsertConfComponent implements OnInit, OnDestroy {
 
   validateTarifAppel(event: any): void {
     event.preventDefault();
-    this.tarifAppel.date = new Date(Date.now()).toISOString();
+
+    this.tarifAppel.date = this.currDate;
     this.tarifAppel.application_id = 3;
     this.changeAppelSub$ = this.service.changeTarifAppels(this.tarifAppel)
       .subscribe(data => console.log(data));
@@ -42,25 +48,25 @@ export class InsertConfComponent implements OnInit, OnDestroy {
 
   validateTarifMessage(event: any): void {
     event.preventDefault();
-    this.tarifMessage.date = new Date(Date.now()).toISOString();
+    this.tarifMessage.date = this.currDate;
     this.tarifMessage.application_id = 2;
     this.changeMessageSub$ = this.service.changeTarifMessage(this.tarifMessage)
       .subscribe(
         data => console.log(data),
         error => console.log(error)
-        );
+      );
   }
 
   validateTarifInternet(event: any): void {
     event.preventDefault();
-    this.tarifInternet.date = new Date(Date.now()).toISOString();
+    this.tarifInternet.date = this.currDate;
     this.changeInternetSub$ = this.service.changeTarifInternet(this.tarifInternet)
       .subscribe(data => console.log(data));
   }
 
   validateFraisMobileMoney(event: any): void {
     event.preventDefault();
-    this.fraisMobileMoney.date = new Date(Date.now()).toISOString();
+    this.fraisMobileMoney.date = this.currDate;
     this.changeMobileMoneySub$ = this.service.changeFraisMobileMoney(this.fraisMobileMoney)
       .subscribe(data => console.log(data));
   }

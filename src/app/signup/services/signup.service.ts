@@ -24,6 +24,6 @@ export class SignupService {
         "Content-Type": "application/json"
       }
     };
-    return this.http.post<HttpSignupResponse>(`${this.url}/signup`, customer, options);
+    return this.http.post<HttpSignupResponse>(`${this.url}/auth/signup`, customer, options);
   }
 }
