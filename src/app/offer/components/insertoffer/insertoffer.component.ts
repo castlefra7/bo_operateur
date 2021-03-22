@@ -80,12 +80,37 @@ export class InsertofferComponent implements OnInit {
   
   onAmountsSub() : void {
     const value = this.amountForm.value;
+    let t_type = ";"
+    let i_app_id = 0;
+
+    switch (value.appName) {
+      case "Internet":
+        t_type = "i";
+        i_app_id = 2;
+        break;
+      case "Appel":
+        t_type = "c";
+        i_app_id = -1;
+        break;
+      case "Message":
+        t_type = "m";
+        i_app_id = -1;
+        break;
+      case "Facebook":
+        t_type = "i";
+        i_app_id = 1;
+        break;
+    
+      default:
+        break;
+    }
+
     const newAmount : Amount = {
       application : {
         id : 1,
         name : value.appName,
-        t_type : "i",
-        internet_application_id : 1,
+        t_type : t_type,
+        internet_application_id : i_app_id,
         unit : {
           id: 1,
           suffix : value.unitName,

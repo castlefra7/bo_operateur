@@ -52,6 +52,9 @@
           <option  value="Appel">
             Appel
           </option>
+          <option  value="Message">
+            Message
+          </option>
         </select>
       </div>
       <div>
@@ -64,9 +67,13 @@
       </div>
       <div>
         <select [formControl]="amountForm.controls['unitName']">
-          <option *ngFor="let unit of units$ | async" [value]="unit.suffix">
-            {{ unit.suffix }}
-          </option>
+          <option value="Sec">Sec</option>
+          <option value="Mn">Mn</option>
+          <option value="Hr">Hr</option>
+          <option value="N">N</option>
+          <option value="Ko">Ko</option>
+          <option value="Mo">Mo</option>
+          <option value="Go">Go</option>
         </select>
       </div>
       <div>
