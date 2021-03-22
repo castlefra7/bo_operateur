@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Console } from 'node:console';
 import { Observable } from 'rxjs';
 import { Amount, Application, Offer, Unit } from '../../offer';
 import { ApplicationService } from '../../services/application.service';
@@ -18,7 +19,7 @@ export class InsertofferComponent implements OnInit {
   allOfferTypes: OfferType[];
 
   addedAmounts : Amount[] = [];
-  applications : Application[] = [];
+  applications! : any;
 
   units$! : Observable<Unit[]>;
 
@@ -42,7 +43,7 @@ export class InsertofferComponent implements OnInit {
       }
     );
     this.amountForm = fb.group({
-      'appName' : ['', Validators.required],
+      'appName' : [, Validators.required],
       'value' : [null, Validators.required],
       'unitName' : ['', Validators.required],
       'intra' : [],
@@ -53,7 +54,7 @@ export class InsertofferComponent implements OnInit {
   ngOnInit(): void {
     this.appService.findAll()
       .subscribe(data => {
-        this.applications = data.data!
+        this.applications = data.data![0]!
         console.log(this.applications);
       });
       this.units$ = this.unitService.findAll();
@@ -80,37 +81,14 @@ export class InsertofferComponent implements OnInit {
   
   onAmountsSub() : void {
     const value = this.amountForm.value;
-    let t_type = ";"
-    let i_app_id = 0;
-
-    switch (value.appName) {
-      case "Internet":
-        t_type = "i";
-        i_app_id = 2;
-        break;
-      case "Appel":
-        t_type = "c";
-        i_app_id = -1;
-        break;
-      case "Message":
-        t_type = "m";
-        i_app_id = -1;
-        break;
-      case "Facebook":
-        t_type = "i";
-        i_app_id = 1;
-        break;
-    
-      default:
-        break;
-    }
-
+    const internetApp =  this.applications.find((e: { name: any; }) => e.name == value.appName);
+    console.log(internetApp.name);
     const newAmount : Amount = {
       application : {
         id : 1,
-        name : value.appName,
-        t_type : t_type,
-        internet_application_id : i_app_id,
+        name : internetApp.name,
+        t_type : internetApp.t_type,
+        internet_application_id : internetApp.internet_application_id,
         unit : {
           id: 1,
           suffix : value.unitName,

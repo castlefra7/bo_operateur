@@ -43,7 +43,10 @@
           name="applicationName"
           [formControl]="amountForm.controls['appName']"
         >
-          <option  value="Internet">
+        <option *ngFor="let app of applications" value="{{app.name}}">
+          {{app.name}}
+        </option>
+          <!-- <option  value="Internet">
             Internet
           </option>
           <option  value="Facebook">
@@ -54,7 +57,7 @@
           </option>
           <option  value="Message">
             Message
-          </option>
+          </option> -->
         </select>
       </div>
       <div>
