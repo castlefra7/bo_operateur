@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { FraisMobileMoney, TarifAppel, TarifInternet, TarifMessage } from '../tarif';
 
 @Injectable({
@@ -10,41 +10,32 @@ export class TarificationService {
 
   readonly url : string = "http://localhost:8080";
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private auth : AuthService
+    ) { }
+
+  getHeader() {
+    return {
+      "Content-Type": "application/json; charset=utf-8",
+      'Accept': 'application/json',
+      "Authorization" : `Bearer ${localStorage.getItem(this.auth.ADMIN_AUTH_KEY)}`
+    };
+  }
 
   changeTarifAppels(newTarif: TarifAppel) {
-    const options = {
-      headers : {
-        "Content-Type": "application/json"
-      }
-    };
-    return this.http.post(`${this.url}/pricings/calls`, newTarif, options);
+    return this.http.post(`${this.url}/pricings/calls`, newTarif, { headers : this.getHeader() });
   }
 
   changeTarifMessage(newTarif: TarifMessage) {
-    const options = {
-      headers : {
-        "Content-Type": "application/json"
-      }
-    };
-    return this.http.post(`${this.url}/pricings/messages`, newTarif, options);
+    return this.http.post(`${this.url}/pricings/messages`, newTarif, { headers : this.getHeader() });
   }
 
   changeTarifInternet(newTarif: TarifInternet) {
-    const options = {
-      headers : {
-        "Content-Type": "application/json"
-      }
-    };
-    return this.http.post(`${this.url}/pricings/internet`, newTarif, options);
+    return this.http.post(`${this.url}/pricings/internet`, newTarif, { headers : this.getHeader() });
   }
 
   changeFraisMobileMoney(newTarif: FraisMobileMoney) {
-    const options = {
-      headers : {
-        "Content-Type": "application/json"
-      }
-    };
-    return this.http.post(`${this.url}/mobilemoney/fees`, newTarif, options);
+    return this.http.post(`${this.url}/mobilemoney/fees`, newTarif, { headers : this.getHeader() });
   }
 }

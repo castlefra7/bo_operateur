@@ -42,6 +42,8 @@ export class InsertConfComponent implements OnInit, OnDestroy {
 
     this.tarifAppel.date = this.currDate;
     this.tarifAppel.application_id = 3;
+    console.log(this.tarifAppel);
+    
     this.changeAppelSub$ = this.service.changeTarifAppels(this.tarifAppel)
       .subscribe(data => console.log(data));
   }
