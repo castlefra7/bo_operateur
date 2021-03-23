@@ -33,7 +33,7 @@ export class AuthService {
       }
     };
     return this.http.post<HttpAuthResp>(
-      `${this.url}/auth`, 
+      `${this.url}/auth/signin`,
       { phoneNumber : phoneNumber, password : pwd }
       , options);
   }
@@ -45,7 +45,7 @@ export class AuthService {
       }
     };
     return this.http.post<HttpAuthResp>(
-      `${this.url}/auth/signin/admin`, 
+      `${this.url}/auth/signin/admin`,
       { name : name, password : pwd }
       , options);
   }
