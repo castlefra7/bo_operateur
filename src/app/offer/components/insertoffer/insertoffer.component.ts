@@ -45,8 +45,8 @@ export class InsertofferComponent implements OnInit {
       'appName' : [, Validators.required],
       'value' : [null, Validators.required],
       'unitName' : ['', Validators.required],
-      'intra' : [],
-      'extra' : []
+      'intra' : [null],
+      'extra' : [null]
     });
   }
 
@@ -93,7 +93,11 @@ export class InsertofferComponent implements OnInit {
           suffix : value.unitName,
         }
       },
-      utilization : {
+      value : value.value,
+    };
+
+    if (value.intra != null && value.extra != null) {
+      newAmount["utilization"] = {
         intra : {
           price : value.intra,
           per : "sec"
@@ -102,9 +106,8 @@ export class InsertofferComponent implements OnInit {
           price : value.extra,
           per : "sec"
         }
-      },
-      value : value.value,
-    };
+      };
+    }
     console.log(newAmount);
     this.addedAmounts.push(newAmount);
   }
