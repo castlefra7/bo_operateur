@@ -49,3 +49,35 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+@font-face {
+    font-family: 'Roboto Thin';
+    src: url('../assets/Fonts/Roboto/Roboto-Thin.ttf')
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../assets/Fonts/Roboto/Roboto-Regular.ttf')
+}
+
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url('../assets/Fonts/Roboto/Roboto-Medium.ttf')
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('../assets/Fonts/Roboto/Roboto-Bold.ttf')
+}
+
+.header-title {
+    font-family:  'Roboto Bold';
+    font-size: small;
+    text-transform: uppercase;
+}
+
+.elements {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

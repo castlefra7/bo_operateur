@@ -11,15 +11,21 @@
 <body>
   <div id="header">
       <div class="elements">
-        <ul>
-          <li><a [routerLink]="['']">Accueil</a></li>
-          <li *ngIf="auth.isLoggedInAsAdmin()" ><a [routerLink]="['offers']">Offres</a></li>
-          <li *ngIf="auth.isLoggedInAsAdmin()" ><a [routerLink]="['conf']">Tarifications</a></li>
-          <li *ngIf="auth.isLoggedInAsAdmin()" ><a [routerLink]="['mobile']">Mobile money</a></li>
-          <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a [routerLink]="['signup']">Inscription</a></li>
-          <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a [routerLink]="['signin']">Login</a></li>
-          <li *ngIf="auth.isLoggedIn() || auth.isLoggedInAsAdmin()" ><a (click)="auth.logout()">Logout</a></li>
-        </ul>
+        <div class="one">
+          <ul>
+            <li><a class="header-title" [routerLink]="['']">Accueil</a></li>
+            <li *ngIf="auth.isLoggedInAsAdmin()" ><a class="header-title" [routerLink]="['offers']">Offres</a></li>
+            <li *ngIf="auth.isLoggedInAsAdmin()" ><a class="header-title" [routerLink]="['conf']">Tarifications</a></li>
+            <li *ngIf="auth.isLoggedInAsAdmin()" ><a class="header-title" [routerLink]="['mobile']">Mobile money</a></li>
+          </ul>
+        </div>
+        <div class="two">
+          <ul>
+            <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a class="header-title" [routerLink]="['signup']">Inscription</a></li>
+            <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a class="header-title" [routerLink]="['signin']">Login</a></li>
+            <li *ngIf="auth.isLoggedIn() || auth.isLoggedInAsAdmin()" ><a class="header-title" (click)="auth.logout()">Logout</a></li>
+          </ul>
+        </div>
       </div>
   </div>
   <div id="content">

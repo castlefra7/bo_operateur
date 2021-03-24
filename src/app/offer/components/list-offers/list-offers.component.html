@@ -9,7 +9,7 @@
         <th>Montants</th>
     </tr>
     <tr *ngFor="let offer of offers">
-        <td>{{ offer.name }}</td>
+        <td class="orange">{{ offer.name }}</td>
         <td>{{ offer.price }} Ar</td>
         <td> {{ offer.validityDay }} jours</td>
         <td>{{ offer.limitation!.buyingLimit }} fois sur {{ offer.limitation!.durationInDays }} j </td>

@@ -21,12 +21,18 @@ export class SigninComponent implements OnInit {
 
   admin : Credential = {};
 
+  asAdmin = false;
+
   constructor(
     private auth : AuthService,
     private route : Router
     ) { }
 
   ngOnInit(): void {
+  }
+
+  toggleIsAdmin() {
+    this.asAdmin = !this.asAdmin;
   }
 
   signin(event : any) {
