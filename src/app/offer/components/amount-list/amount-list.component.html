@@ -1,0 +1,21 @@
+<table class="table">
+    <tr>
+        <th>Application</th>
+        <th>Montant</th>
+        <th>Valeur</th>
+        <th>Consomation</th>
+    </tr>
+    <tr *ngFor="let montant of amounts">
+        <td>{{ montant.application!.name }}</td>                    
+        <td class="right">{{ montant.value }}</td>     
+        <td>{{ montant.application!.unit!.suffix }}</td>
+        <td *ngIf="montant.utilization == null">--</td>
+        <td *ngIf="montant.utilization != null">
+            <tr>
+                <td>{{ montant.utilization.intra.price }} Ar/sec</td>
+            </tr>
+            <tr>
+                <td>{{ montant.utilization.extra.price }} Ar/sec autres operateur</td>
+            </tr>
+        </td>
+</table>

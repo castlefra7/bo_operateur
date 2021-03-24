@@ -1,125 +1,108 @@
-<form class="form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <h1>Saisi offre</h1>
-  </div>
-  <div class="form-group">
-    <label>Date début de l'offre:</label>
-    <input [formControl]="myForm.controls['date']" type="date" />
-  </div>
-  <div class="form-group">
-    <label>Nom Offre:</label>
-    <input [formControl]="myForm.controls['name']" type="text" />
-  </div>
-  <div class="form-group">
-    <label>Durée de validité (en Jours):</label>
-    <input [formControl]="myForm.controls['validityDay']" type="text" />
-  </div>
-  <div class="form-group">
-    <label>Limite Achat par période:</label>
-    <input [formControl]="myForm.controls['buyingLimit']" type="number" />
-  </div>
-  <div class="form-group">
-    <label>Période de limite d'achat:</label>
-    <input [formControl]="myForm.controls['durationInDays']" type="number" />
-  </div>
-  <div class="form-group">
-    <label>Prix:</label>
-    <input [formControl]="myForm.controls['price']" type="number" />
-  </div>
-  <div class="form-group">
-    <label>Priorité:</label>
-    <input [formControl]="myForm.controls['priority']" type="number" />
-  </div>
-</form>
+<div class="cnt">
+  <form class="form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <h1>Saisi de nouvelle offre</h1>
+    </div>
+    <div class="form-group">
+      <label>Date début de l'offre:</label>
+      <input class="input" [formControl]="myForm.controls['date']" type="date" />
+    </div>
+    <div class="form-group">
+      <label>Nom Offre:</label>
+      <input class="input" [formControl]="myForm.controls['name']" type="text" />
+    </div>
+    <div class="form-group">
+      <label>Durée de validité (en Jours):</label>
+      <input class="input" [formControl]="myForm.controls['validityDay']" type="text" />
+    </div>
+    <div class="form-group">
+      <label>Limite Achat par période:</label>
+      <input class="input" [formControl]="myForm.controls['buyingLimit']" type="number" />
+    </div>
+    <div class="form-group">
+      <label>Période de limite d'achat:</label>
+      <input class="input" [formControl]="myForm.controls['durationInDays']" type="number" />
+    </div>
+    <div class="form-group">
+      <label>Prix:</label>
+      <input class="input" [formControl]="myForm.controls['price']" type="number" />
+    </div>
+    <div class="form-group">
+      <label>Priorité:</label>
+      <input class="input" [formControl]="myForm.controls['priority']" type="number" />
+    </div>
+  </form>
 
-<!-- tapitra -->
-<form [formGroup]="amountForm" (ngSubmit)="onAmountsSub()">
-  <div class="form-group">
-    <label>Types d'offre:</label>
-    <div class="row">
-      <div>
-        <select
-          type="text"
-          name="applicationName"
-          [formControl]="amountForm.controls['appName']"
-        >
+  <form class="form" [formGroup]="amountForm" (ngSubmit)="onAmountsSub()">
+    <div class="form-group">
+      <h1>Montants</h1>
+    </div>
+    <div class="form-group">
+      <label>Types d'offre:</label>
+      <select
+        type="text"
+        name="applicationName"
+        class="input select"
+        [formControl]="amountForm.controls['appName']"
+      >
         <option *ngFor="let app of applications" value="{{app.name}}">
           {{app.name}}
         </option>
-          <!-- <option  value="Internet">
-            Internet
-          </option>
-          <option  value="Facebook">
-            Facebook
-          </option>
-          <option  value="Appel">
-            Appel
-          </option>
-          <option  value="Message">
-            Message
-          </option> -->
-        </select>
-      </div>
-      <div>
-        <input
-          type="number"
-          name="value"
-          placeholder="Valeur"
-          [formControl]="amountForm.controls['value']"
-        />
-      </div>
-      <div>
-        <select [formControl]="amountForm.controls['unitName']">
-          <option value="Sec">Sec</option>
-          <option value="Mn">Mn</option>
-          <option value="Hr">Hr</option>
-          <option value="N">N</option>
-          <option value="Ko">Ko</option>
-          <option value="Mo">Mo</option>
-          <option value="Go">Go</option>
-        </select>
-      </div>
-      <div>
-        <input
-          type="number"
-          name="intra"
-          placeholder="Prix intra"
-          [formControl]="amountForm.controls['intra']"
-        />
-      </div>
-      <div>
-        <input
-          type="number"
-          name="extra"
-          placeholder="Prix extra"
-          [formControl]="amountForm.controls['extra']"
-        />
-      </div>
-      <div>
-        <button class="btn btn-primary">Ajouter</button>
-      </div>
+      </select>
     </div>
-  </div>
-  <div class="form-group">
-    <table class="table">
-      <tr>
-        <th>Type offre</th>
-        <th>Valeur</th>
-        <th>Unité</th>
-      </tr>
-      <tr *ngFor="let amount of addedAmounts">
-        <td>{{ amount.application!.name }}</td>
-        <td>{{ amount.value }}</td>
-        <td>{{ amount.application!.unit!.suffix }}</td>
-        <td>
-        </td>
-      </tr>
-    </table>
-  </div>
-</form>
-
+    <div class="form-group">
+      <label>Valeur:</label>
+      <input
+        type="number"
+        name="value"
+        placeholder="Valeur"
+        class="input"
+        [formControl]="amountForm.controls['value']"
+      />
+    </div>
+    <div class="form-group">
+      <label>Unité :</label>
+      <select [formControl]="amountForm.controls['unitName']" class="input select">
+        <option value="Sec">Sec</option>
+        <option value="Mn">Mn</option>
+        <option value="Hr">Hr</option>
+        <option value="N">N</option>
+        <option value="Ko">Ko</option>
+        <option value="Mo">Mo</option>
+        <option value="Go">Go</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Prix intra opérateur:</label>
+      <input
+        type="number"
+        name="intra"
+        placeholder="Prix intra"
+        class="input"
+        [formControl]="amountForm.controls['intra']"
+      />
+    </div>
+    <div class="form-group">
+      <label>Prix extra opérateur:</label>
+      <input
+        type="number"
+        name="extra"
+        placeholder="Prix extra"
+        class="input"
+        [formControl]="amountForm.controls['extra']"
+      />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-lg btn-primary sub">Ajouter</button>
+    </div>
+    <div class="form-group">
+      <app-amount-list [amounts]="addedAmounts"></app-amount-list>
+    </div>
+  </form>
+</div>
+<!-- tapitra -->
 <div class="form-group">
-  <button (click)="onSubmit()" type="submit" class="btn btn-lg btn-primary">
+  <button (click)="onSubmit()" type="submit" class="btn btn-lg btn-primary sub">
     Valider
   </button>
 </div>

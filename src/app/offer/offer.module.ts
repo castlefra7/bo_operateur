@@ -5,11 +5,12 @@ import { OfferRoutingModule } from './offer-routing.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsertofferComponent } from './components/insertoffer/insertoffer.component';
 import { ListOffersComponent } from './components/list-offers/list-offers.component';
+import { AmountListComponent } from './components/amount-list/amount-list.component';
 
 
 
 @NgModule({
-  declarations: [OfferComponent, InsertofferComponent, ListOffersComponent],
+  declarations: [OfferComponent, InsertofferComponent, ListOffersComponent, AmountListComponent],
   imports: [
     CommonModule,
     OfferRoutingModule,

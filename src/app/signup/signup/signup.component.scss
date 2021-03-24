@@ -1,0 +1,43 @@
+.form {
+    margin: 0 auto;
+    width:500px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Roboto Thin';
+}
+
+.input {
+    width: 100%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border : 0.1em solid rgb(194, 194, 194);
+}
+
+label {
+    font-family: 'Roboto';
+    font-size: small;
+}
+
+.sub {
+    margin-top: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: orange;
+    }
+    margin-bottom: 15px;
+}
+
+.adminlink {
+    color: orange;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.alert .alert-danger {
+    width: 100%;
+    background-color:#CE4257 !important;
+    color: white !important;
+}

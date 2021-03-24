@@ -15,18 +15,7 @@
         <td>{{ offer.limitation!.buyingLimit }} fois sur {{ offer.limitation!.durationInDays }} j </td>
         <td>{{ offer.priority }}</td>
         <td>
-            <table class="table">
-                <tr>
-                    <th>Application</th>
-                    <th>Montant</th>
-                    <th>Valeur</th>
-                </tr>
-                <tr *ngFor="let montant of offer.amounts">
-                    <td>{{ montant.application!.name }}</td>                    
-                    <td class="right">{{ montant.value }}</td>     
-                    <td>{{ montant.application!.unit!.suffix }}</td>                   
-                </tr>
-            </table>
+            <app-amount-list [amounts]="offer.amounts" ></app-amount-list>
         </td>
     </tr>
 </table>
