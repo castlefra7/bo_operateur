@@ -11,11 +11,7 @@
         <td>{{ montant.application!.unit!.suffix }}</td>
         <td *ngIf="montant.utilization == null">--</td>
         <td *ngIf="montant.utilization != null">
-            <tr>
-                <td>{{ montant.utilization.intra.price }} Ar/sec</td>
-            </tr>
-            <tr>
-                <td>{{ montant.utilization.extra.price }} Ar/sec autres operateur</td>
-            </tr>
+           {{ montant.utilization.intra.price }} Ar/sec ou
+            {{ montant.utilization.extra.price }} Ar/sec A.O
         </td>
 </table>
