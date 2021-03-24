@@ -14,6 +14,8 @@
         <div class="one">
           <ul>
             <li><a class="header-title" [routerLink]="['']">Accueil</a></li>
+            <li *ngIf="auth.isLoggedIn()" ><a class="header-title" [routerLink]="['history']">Calls</a></li>
+            <li *ngIf="auth.isLoggedInAsAdmin()" ><a class="header-title" [routerLink]="['stats']">Stats</a></li>
             <li *ngIf="auth.isLoggedInAsAdmin()" ><a class="header-title" [routerLink]="['offers']">Offres</a></li>
             <li *ngIf="auth.isLoggedInAsAdmin()" ><a class="header-title" [routerLink]="['conf']">Tarifications</a></li>
             <li *ngIf="auth.isLoggedInAsAdmin()" ><a class="header-title" [routerLink]="['mobile']">Mobile money</a></li>

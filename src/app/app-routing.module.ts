@@ -14,6 +14,11 @@ const routes: Routes = [
     loadChildren: () => import("./offer/offer.module").then(md => md.OfferModule)
   },
   {
+    path: 'history',
+    canActivate : [AuthGuard],
+    loadChildren: () => import("./history/history.module").then(md => md.HistoryModule)
+  },
+  {
     path: 'conf',
     canActivate : [AdminAuthGuard],
     loadChildren: () => import('./config-op/config-op.module').then(md => md.ConfigOpModule)
@@ -30,6 +35,10 @@ const routes: Routes = [
   {
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then(md => md.SigninModule)
+  },
+  {
+    path: 'stats',
+    loadChildren: () => import('./statistique/statistique.module').then(md => md.StatistiqueModule)
   }
 ];
 

@@ -23,6 +23,8 @@ export class SigninComponent implements OnInit {
 
   asAdmin = false;
 
+  error = false;
+
   constructor(
     private auth : AuthService,
     private route : Router

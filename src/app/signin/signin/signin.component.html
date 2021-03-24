@@ -1,5 +1,5 @@
 <div>
-  <div class="alert alert-danger">
+  <div *ngIf="error" class="alert alert-danger">
     Erreur
   </div>
       <form *ngIf="!asAdmin" class="form">
@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
           <label for="">Mot de passe:</label>
-          <input class="input" type="text" name="pwd" placeholder="********" [(ngModel)]="credentials.pwd" />
+          <input class="input" type="password" name="pwd" placeholder="********" [(ngModel)]="credentials.pwd" />
         </div>
         <div class="form-group">
           <button
@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
           <label for="">Mot de passe:</label>
-          <input class="input" placeholder="********" type="text" name="pwd" [(ngModel)]="admin.pwd" />
+          <input class="input" placeholder="********" type="password" name="pwd" [(ngModel)]="admin.pwd" />
         </div>
         <div class="form-group">
           <button
