@@ -40,9 +40,11 @@ export class SigninComponent implements OnInit {
     if (this.credentials.phoneNumber != null && this.credentials.pwd != null) {
       this.auth.login(this.credentials.phoneNumber, this.credentials.pwd)
         .subscribe(data => {
-            if (data.status?.code != 500) {
+            if (data.status?.code == 200) {
               localStorage.setItem(this.auth.AUTH_KEY, data.token!);
               this.route.navigateByUrl("");
+            } else {
+              
             }
         });
     }
