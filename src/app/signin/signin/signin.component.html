@@ -1,49 +1,45 @@
+<div class="alert alert-danger">
+  Erreur
+</div>
 <div class="container">
-    <div class="card">
-      <form>
-        <div class="form-group">
-          <h1>Connectez-vous</h1>
-        </div>
-        <div class="form-group">
-          <label for="">Numero :</label>
-          <input type="text" name="phoneNumber" [(ngModel)]="credentials.phoneNumber" />
-        </div>
-        <div class="form-group">
-          <label for="">Mot de passe:</label>
-          <input type="text" name="pwd" [(ngModel)]="credentials.pwd" />
-        </div>
-        <div class="form-group">
-          <button
-            (click)="signin($event)"
-            type="submit"
-            class="btn btn-lg btn-primary"
-          >
-            Se connecter
-          </button>
-        </div>
-      </form>
 
-      <form>
-        <div class="form-group">
-          <h1>Connectez-vous en tant qu'admin</h1>
-        </div>
-        <div class="form-group">
-          <label for="">Nom :</label>
-          <input type="text" name="nom" [(ngModel)]="admin.name" />
-        </div>
-        <div class="form-group">
-          <label for="">Mot de passe:</label>
-          <input type="text" name="pwd" [(ngModel)]="admin.pwd" />
-        </div>
-        <div class="form-group">
-          <button
-            (click)="signinAdmin($event)"
-            type="submit"
-            class="btn btn-lg btn-primary"
-          >
-            Se connecter
-          </button>
-        </div>
-      </form>
-    </div>
+  <div class="card">
+    <form>
+      <div class="form-group">
+        <h1>Connectez-vous</h1>
+      </div>
+      <div class="form-group">
+        <label for="">Numero :</label>
+        <input type="text" name="phoneNumber" required [(ngModel)]="credentials.phoneNumber" />
+      </div>
+      <div class="form-group">
+        <label for="">Mot de passe:</label>
+        <input type="text" name="pwd" [(ngModel)]="credentials.pwd" />
+      </div>
+      <div class="form-group">
+        <button (click)="signin($event)" type="submit" class="btn btn-lg btn-primary">
+          Se connecter
+        </button>
+      </div>
+    </form>
+
+    <form>
+      <div class="form-group">
+        <h1>Connectez-vous en tant qu'admin</h1>
+      </div>
+      <div class="form-group">
+        <label for="">Nom :</label>
+        <input type="text" name="nom" [(ngModel)]="admin.name" />
+      </div>
+      <div class="form-group">
+        <label for="">Mot de passe:</label>
+        <input type="text" name="pwd" [(ngModel)]="admin.pwd" />
+      </div>
+      <div class="form-group">
+        <button (click)="signinAdmin($event)" type="submit" class="btn btn-lg btn-primary">
+          Se connecter
+        </button>
+      </div>
+    </form>
   </div>
+</div>
