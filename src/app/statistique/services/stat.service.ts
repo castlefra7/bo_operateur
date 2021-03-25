@@ -3,11 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Status } from 'src/app/offer/offer';
-import { Statistique } from '../statistique';
+import { ChartValues, Statistique } from '../statistique';
 
 export interface HttpStatsResponse {
   status?: Status,
   data?: Statistique[]
+}
+
+export interface HttpStatsResponseChart {
+  status?: Status,
+  data?: ChartValues[]
 }
 
 @Injectable({
@@ -33,5 +38,9 @@ export class StatService {
   findAll(date : string) : Observable<HttpStatsResponse> {
     return this.http
       .get<HttpStatsResponse>(`${this.url}/stats?date=${date}`, { headers : this.getHeader() });
+  }
+
+  dailyMobileMoneyOps(): Observable<HttpStatsResponseChart> {
+    return this.http.get<HttpStatsResponseChart>(`${this.url}/stats/mobileops`, {headers: this.getHeader()});
   }
 }
