@@ -9,23 +9,21 @@ import { CallHistoryService } from '../services/call-history.service';
 })
 export class CallsHistoryComponent implements OnInit, OnDestroy {
 
-  callsHistories : CallHistory[] = [];
-
+  callsHistories : any;
   callsHistorySub$ : any;
 
   constructor(
     private callsHistory : CallHistoryService
   ) { }
-test() {
-  this.callsHistorySub$ = this.callsHistory.findAll()
-  .subscribe(
-    data => console.log(data),
-    error => alert(JSON.stringify(error))
-  );
-}
 
   ngOnInit(): void {
-   
+    this.callsHistorySub$ = this.callsHistory.findAll()
+    .subscribe(
+      data => {
+        this.callsHistories = data.data![0];
+      },
+      error => console.log(error),
+    );
   }
 
   ngOnDestroy() : void {

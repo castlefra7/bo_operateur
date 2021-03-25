@@ -5,17 +5,17 @@
         <th>Prix</th>
         <th>Validité</th>
         <th>Limitation</th>
-        <th>Priorité</th>
         <th>Montants</th>
+        <th>Is One Day</th>
     </tr>
     <tr *ngFor="let offer of offers">
         <td class="orange">{{ offer.name }}</td>
         <td>{{ offer.price }} Ar</td>
         <td> {{ offer.validityDay }} jours</td>
         <td>{{ offer.limitation!.buyingLimit }} fois sur {{ offer.limitation!.durationInDays }} j </td>
-        <td>{{ offer.priority }}</td>
         <td>
             <app-amount-list [amounts]="offer.amounts" ></app-amount-list>
         </td>
+        <td>{{ offers.isOneDay ? "oui" : "non" }}</td>
     </tr>
 </table>

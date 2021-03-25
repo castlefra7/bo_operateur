@@ -1,14 +1,13 @@
-<h2>Historique des appels</h2>
+<h2>Historique des appels </h2>
 <table class="table">
     <tr>
         <th>Date</th>
-        <th>Telephone</th>
+        <th>N° Telephone</th>
         <th>Durée</th>
     </tr>
-    <tr >
-        <td>offer.price }} Ar</td>
-        <td> offer.validityDay }} jours</td>
-        <td> offer.limitation!.buyingLimit }} fois sur offer.limitation!.durationInDays }} j </td>
+    <tr *ngFor="let history of callsHistories">
+        <td>{{ history.created_at | date}}</td>
+        <td>{{ history.phone_number }}</td>
+        <td>{{ history.amount }} mins</td>
     </tr>
-    <button (click)="test()">send</button>
 </table>

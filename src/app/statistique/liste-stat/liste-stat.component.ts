@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StatService } from '../services/stat.service';
+import { Statistique } from '../statistique';
 
 @Component({
   selector: 'app-liste-stat',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeStatComponent implements OnInit {
 
-  constructor() { }
+  date : string = "";
+  stats : any;
+
+  constructor(
+    private stat : StatService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() : void {
+    if (this.date != "") {
+      this.stat.findAll(this.date)
+        .subscribe(
+          data => this.stats = data.data![0]
+          ,
+          error => console.error(error),
+        );
+    }
   }
 
 }

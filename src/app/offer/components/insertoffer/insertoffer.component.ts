@@ -38,7 +38,7 @@ export class InsertofferComponent implements OnInit {
         'price': [1000, Validators.required],
         'buyingLimit': [2, Validators.required],
         'durationInDays': [7, Validators.required],
-        'priority': [1, Validators.required]
+        'isOneDay': [false, Validators.required],
       }
     );
     this.amountForm = fb.group({
@@ -63,12 +63,12 @@ export class InsertofferComponent implements OnInit {
     const value = this.myForm.value;
     const newOffer : Offer = {
       id: 1,
+      isOneDay : value.isOneDay,
       createdAt : Date.now().toString(),
       name : value.name,
       amounts : this.addedAmounts,
       price : value.price,
       validityDay : value.validityDay,
-      priority : value.priority,
       limitation : {
         buyingLimit : value.buyingLimit,
         durationInDays: value.durationInDays
