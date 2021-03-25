@@ -22,6 +22,8 @@ export class MobileMoneyComponent implements OnInit {
     this.mobileService.allDeposits().subscribe(data => {
       if(data.status?.code == 200) {
         this.allDeposits = data.data;
+        console.log("at");
+        console.log(data.data);
       }
     });
   }
