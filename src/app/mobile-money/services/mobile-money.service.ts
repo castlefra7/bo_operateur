@@ -43,7 +43,7 @@ export class MobileMoneyService {
   }
 
   validateDeposit(id: Number): Observable<HttpResponse> {
-    const headers = {"Content-Type": "application/json"};
-    return this.http.put(`${this.url}/pos/validate/${id}`, headers)
+    const body = {};
+    return this.http.put(`${this.url}/pos/validate/${id}`, body, {headers: this.getHeader()});
   }
 }
