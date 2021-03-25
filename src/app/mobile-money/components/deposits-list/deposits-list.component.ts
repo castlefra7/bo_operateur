@@ -18,7 +18,6 @@ export class DepositsListComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log(this.allDeposits);
   }
 
   update(id: Number) {

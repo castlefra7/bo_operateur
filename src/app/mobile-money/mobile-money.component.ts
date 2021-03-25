@@ -33,7 +33,7 @@ export class MobileMoneyComponent implements OnInit {
       if(data.status?.code == 200) {
         this.fetchData();
       }
-    })
+    }, err => alert(err.error.message))
     
   }
 
