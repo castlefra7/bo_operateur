@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Status } from 'src/app/offer/offer';
+import { environment } from 'src/environments/environment.prod';
 import { CallHistory } from '../callHistory';
 
 export interface HttpCallsHistoryResponse {
@@ -14,8 +15,6 @@ export interface HttpCallsHistoryResponse {
   providedIn: 'root'
 })
 export class CallHistoryService {
-
-  readonly url = "http://localhost:8080";
 
   constructor(
     private http: HttpClient,
@@ -33,6 +32,6 @@ export class CallHistoryService {
   findAll() : Observable<HttpCallsHistoryResponse> {
     console.log(`Token ${localStorage.getItem(this.auth.AUTH_KEY)}`);
     return this.http
-      .get<HttpCallsHistoryResponse>(`${this.url}/customers/callshistory`, { headers : this.getHeader() });
+      .get<HttpCallsHistoryResponse>(`${environment.url}/customers/callshistory`, { headers : this.getHeader() });
   }
 }

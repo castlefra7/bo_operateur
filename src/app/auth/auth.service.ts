@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Status } from '../offer/offer';
 import { Credential } from '../signin/signin/signin.component';
+import { environment } from "./../../environments/environment.prod";
 
 export interface HttpAuthResp {
   status?: Status,
@@ -19,8 +20,6 @@ export class AuthService {
   AUTH_KEY = "AuthOperateur";
   ADMIN_AUTH_KEY = "AuthAdmin";
 
-  readonly url ="http://localhost:8080";
-
   constructor(
     private http: HttpClient,
     private router : Router
@@ -33,7 +32,7 @@ export class AuthService {
       }
     };
     return this.http.post<HttpAuthResp>(
-      `${this.url}/auth/signin`,
+      `${environment.url}/auth/signin`,
       { phoneNumber : phoneNumber, password : pwd }
       , options);
   }
@@ -45,7 +44,7 @@ export class AuthService {
       }
     };
     return this.http.post<HttpAuthResp>(
-      `${this.url}/auth/signin/admin`,
+      `${environment.url}/auth/signin/admin`,
       { name : name, password : pwd }
       , options);
   }

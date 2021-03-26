@@ -23,8 +23,8 @@
         </div>
         <div class="two">
           <ul>
-            <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a class="header-title" [routerLink]="['signup']">Inscription</a></li>
-            <li *ngIf="!auth.isLoggedIn() || !auth.isLoggedInAsAdmin()"><a class="header-title" [routerLink]="['signin']">Login</a></li>
+            <li *ngIf="!auth.isLoggedIn() && !auth.isLoggedInAsAdmin()"><a class="header-title" [routerLink]="['signup']">Inscription</a></li>
+            <li *ngIf="!auth.isLoggedIn() && !auth.isLoggedInAsAdmin()"><a class="header-title" [routerLink]="['signin']">Login</a></li>
             <li *ngIf="auth.isLoggedIn() || auth.isLoggedInAsAdmin()" ><a class="header-title" (click)="auth.logout()">Logout</a></li>
           </ul>
         </div>

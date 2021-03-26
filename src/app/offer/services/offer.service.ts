@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { HttpRespOffer, Offer } from '../offer';
 
 export class OfferType {
@@ -18,11 +19,11 @@ export class OfferType {
 })
 export class OfferService {
 
-  url : string = "http://localhost:8080";
   constructor(private http: HttpClient) { }
 
   findAll() : Observable<HttpRespOffer> {
-    return this.http.get(`${this.url}/offers`);
+    console.log("url : " + environment.url);
+    return this.http.get(`${environment.url}/offers`);
   }
 
   insert(newOffer: Offer): Observable<HttpRespOffer> {
@@ -31,7 +32,7 @@ export class OfferService {
         "Content-Type": "application/json"
       }
     };
-    return this.http.post(`${this.url}/offers`, newOffer, options);
+    return this.http.post(`${environment.url}/offers`, newOffer, options);
   }
 
   getAllOfferTypes() {

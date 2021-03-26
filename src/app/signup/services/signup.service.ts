@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Status } from 'src/app/offer/offer';
+import { environment } from 'src/environments/environment.prod';
 import { Customer } from '../customer';
 
 export interface HttpSignupResponse {
@@ -14,8 +15,6 @@ export interface HttpSignupResponse {
 })
 export class SignupService {
 
-  readonly url : string = "http://localhost:8080";
-
   constructor(private http : HttpClient) { }
 
   signup(customer : Customer) : Observable<HttpSignupResponse>{
@@ -24,6 +23,6 @@ export class SignupService {
         "Content-Type": "application/json"
       }
     };
-    return this.http.post<HttpSignupResponse>(`${this.url}/auth/signup`, customer, options);
+    return this.http.post<HttpSignupResponse>(`${environment.url}/auth/signup`, customer, options);
   }
 }

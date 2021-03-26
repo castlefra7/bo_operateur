@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 export interface Deposit {
   created_at: string;
@@ -25,7 +26,6 @@ export interface Status {
   providedIn: 'root'
 })
 export class MobileMoneyService {
-  url : string = "http://localhost:8080";
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -39,11 +39,11 @@ export class MobileMoneyService {
 
   allDeposits(): Observable<HttpResponse> {
     console.log(localStorage.getItem(this.auth.ADMIN_AUTH_KEY));
-    return this.http.get(`${this.url}/pos/deposits`, {headers: this.getHeader()});
+    return this.http.get(`${environment.url}/pos/deposits`, {headers: this.getHeader()});
   }
 
   validateDeposit(id: Number): Observable<HttpResponse> {
     const body = {};
-    return this.http.put(`${this.url}/pos/validate/${id}`, body, {headers: this.getHeader()});
+    return this.http.put(`${environment.url}/pos/validate/${id}`, body, {headers: this.getHeader()});
   }
 }

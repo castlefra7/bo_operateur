@@ -20,6 +20,8 @@ export class InsertConfComponent implements OnInit, OnDestroy {
   changeMobileMoneySub$: any;
   currDate: string;
 
+  errorMessage : string = '';
+
   constructor(private service: TarificationService) {
     var dt = new Date(Date.now());
     this.currDate = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()} ${dt.getHours()}:${dt.getMinutes()}`;
@@ -44,7 +46,9 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     this.tarifAppel.application_id = 3;
     
     this.changeAppelSub$ = this.service.changeTarifAppels(this.tarifAppel)
-      .subscribe(data => console.log(data));
+      .subscribe(
+        data => console.log(data)
+        );
   }
 
   validateTarifMessage(event: any): void {
