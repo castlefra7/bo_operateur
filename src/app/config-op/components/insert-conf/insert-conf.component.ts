@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TarificationService } from '../../services/tarification.service';
 import { FraisMobileMoney, TarifAppel, TarifInternet, TarifMessage } from '../../tarif';
 
@@ -8,6 +8,8 @@ import { FraisMobileMoney, TarifAppel, TarifInternet, TarifMessage } from '../..
   styleUrls: ['./insert-conf.component.scss']
 })
 export class InsertConfComponent implements OnInit, OnDestroy {
+
+  @ViewChild('toast') toast : any;
 
   tarifAppel: TarifAppel = {};
   tarifMessage: TarifMessage = {};
@@ -47,7 +49,8 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     
     this.changeAppelSub$ = this.service.changeTarifAppels(this.tarifAppel)
       .subscribe(
-        data => console.log(data)
+        data => console.log(data),
+        error => this.toast.show(error.message)
         );
   }
 
@@ -58,7 +61,7 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     this.changeMessageSub$ = this.service.changeTarifMessage(this.tarifMessage)
       .subscribe(
         data => console.log(data),
-        error => console.log(error)
+        error => this.toast.show(error.message)
       );
   }
 
@@ -66,13 +69,23 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     event.preventDefault();
     this.tarifInternet.date = this.currDate;
     this.changeInternetSub$ = this.service.changeTarifInternet(this.tarifInternet)
-      .subscribe(data => console.log(data));
+      .subscribe(
+        data => console.log(data),
+        error => this.toast.show(error.message)
+        );
   }
 
   validateFraisMobileMoney(event: any): void {
     event.preventDefault();
     this.fraisMobileMoney.date = this.currDate;
     this.changeMobileMoneySub$ = this.service.changeFraisMobileMoney(this.fraisMobileMoney)
-      .subscribe(data => console.log(data));
+      .subscribe(
+        data => {
+          if (data.status?.code !=  200) {
+            this.toast.show(data.status?.message);
+          } 
+        },
+        error => this.toast.show(error.message)
+        );
   }
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url : "https://spring-baks.herokuapp.com"
+  url : "http://localhost:8080"
 };
 
 /*

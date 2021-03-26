@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { ToastService } from './services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent {
 
   constructor(
     private http: HttpClient,
-    public auth: AuthService
+    public auth: AuthService,
+    public toastService : ToastService
     ) {}
 
   ngOnInit() {
