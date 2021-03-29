@@ -41,19 +41,19 @@ export class ChartsInfoComponent implements OnInit {
     this.statService.dailyMobileMoneyOps().subscribe(data => {
       if (data.status?.code == 200) {
         if (data?.data) {
-          var d = data?.data;
-          console.log(d);
-          if (d[1].labels.length > d[0].labels.length) {
-            this.lineChartLabels = d[1].labels;
+          var chartValues = data?.data;
+          console.log(chartValues);
+          if (chartValues[1].labels.length > chartValues[0].labels.length) {
+            this.lineChartLabels = chartValues[1].labels;
 
           } else {
-            this.lineChartLabels = d[0].labels;
+            this.lineChartLabels = chartValues[0].labels;
 
           }
-          this.lineChartData[0].data = d[0].data;
+          this.lineChartData[0].data = chartValues[0].data;
 
 
-          this.lineChartData[1].data = d[1].data;
+          this.lineChartData[1].data = chartValues[1].data;
         }
 
       }
