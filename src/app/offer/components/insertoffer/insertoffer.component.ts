@@ -35,6 +35,7 @@ export class InsertofferComponent implements OnInit {
     this.myForm = fb.group(
       {
         'name': ['Test', Validators.required],
+        'code': ['', Validators.required],
         'date': [new Date()],
         'validityDay': [7, Validators.required],
         'price': [1000, Validators.required],
@@ -65,6 +66,7 @@ export class InsertofferComponent implements OnInit {
     const value = this.myForm.value;
     const newOffer : Offer = {
       id: 1,
+      code: value.code,
       isOneDay : value.isOneDay,
       createdAt : Date.now().toString(),
       name : value.name,

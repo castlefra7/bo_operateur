@@ -15,6 +15,7 @@ export interface Status {
 
 export interface Offer {
     id?: number | undefined,
+    code?: string,
     name?: string,
     isOneDay?: boolean,
     createdAt?: string,
