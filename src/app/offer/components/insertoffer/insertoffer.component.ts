@@ -64,6 +64,9 @@ export class InsertofferComponent implements OnInit {
 
   onSubmit(): void {
     const value = this.myForm.value;
+    if (value.code != null && value.name != null && value.addedAmounts != null && value.price != null && value.validityDay != null && value.buyingLimit != null && value.durationInDays) {
+
+    }
     const newOffer : Offer = {
       id: 1,
       code: value.code,
@@ -71,14 +74,13 @@ export class InsertofferComponent implements OnInit {
       createdAt : new Date(Date.now()).toISOString(),
       name : value.name,
       amounts : this.addedAmounts,
-      price : value.price,
-      validityDay : value.validityDay,
+      price : value.price || -1,
+      validityDay : value.validityDay || -1,
       limitation : {
-        buyingLimit : value.buyingLimit,
-        durationInDays: value.durationInDays
+        buyingLimit : value.buyingLimit || -1,
+        durationInDays: value.durationInDays || -1
       },
     };
-    console.log(newOffer);
     this.offerService.insert(newOffer)
     .subscribe(
       data => {
