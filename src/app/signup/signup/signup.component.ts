@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Customer } from '../customer';
 import { SignupService } from '../services/signup.service';
 
@@ -14,6 +14,8 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   succes = false;
   phoneNumber: string | undefined;
+
+  @ViewChild('toast') toast : any;
 
   constructor(private service: SignupService) { }
 
@@ -35,8 +37,9 @@ export class SignupComponent implements OnInit, OnDestroy {
           console.log(data);
           this.succes = true;
           this.phoneNumber = data.data[0].phone_number; 
+        } else {
+          this.toast.show(data.status.message)
         }
-
       });
   }
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Amount, Application, Offer, Unit } from '../../offer';
+import { Amount, Offer, Unit } from '../../offer';
 import { ApplicationService } from '../../services/application.service';
 import { OfferService, OfferType } from '../../services/offer.service';
 import { UnitService } from '../../services/unit.service';
@@ -21,6 +21,8 @@ export class InsertofferComponent implements OnInit {
   applications! : any;
 
   units$! : Observable<Unit[]>;
+
+  @ViewChild('toast') toast : any;
 
   constructor(
     private fb: FormBuilder, 
@@ -75,7 +77,16 @@ export class InsertofferComponent implements OnInit {
       },
     };
     console.log(newOffer);
-    this.offerService.insert(newOffer).subscribe(data => console.log(data));
+    this.offerService.insert(newOffer)
+    .subscribe(
+      data => {
+        if (data.status?.code == 200) {
+          console.log(data);
+        } else {
+          this.toast.show(data.status?.message)
+        }
+      }
+      );
   }
   
   onAmountsSub() : void {

@@ -6,6 +6,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsertofferComponent } from './components/insertoffer/insertoffer.component';
 import { ListOffersComponent } from './components/list-offers/list-offers.component';
 import { AmountListComponent } from './components/amount-list/amount-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +16,8 @@ import { AmountListComponent } from './components/amount-list/amount-list.compon
     CommonModule,
     OfferRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [FormBuilder]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -25,6 +25,8 @@ export class SigninComponent implements OnInit {
 
   error = false;
 
+  @ViewChild('toast') toast : any;
+
   constructor(
     private auth : AuthService,
     private route : Router
@@ -46,7 +48,7 @@ export class SigninComponent implements OnInit {
               localStorage.setItem(this.auth.AUTH_KEY, data.token!);
               this.route.navigateByUrl("");
             } else {
-              
+              this.toast.show(data.status?.message)
             }
         });
     }
@@ -62,6 +64,8 @@ export class SigninComponent implements OnInit {
               localStorage.setItem(this.auth.ADMIN_AUTH_KEY, data.token!);
               this.route.navigateByUrl("");
               console.log(data);
+            } else{
+              this.toast.show(data.status.message)
             }
         });
     }
