@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url : "https://operateur-kabs.herokuapp.com"
+  url : "http://localhost:8080"
 };

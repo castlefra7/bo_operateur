@@ -68,7 +68,7 @@ export class InsertofferComponent implements OnInit {
       id: 1,
       code: value.code,
       isOneDay : value.isOneDay,
-      createdAt : Date.now().toString(),
+      createdAt : new Date(Date.now()).toISOString(),
       name : value.name,
       amounts : this.addedAmounts,
       price : value.price,
@@ -84,6 +84,7 @@ export class InsertofferComponent implements OnInit {
       data => {
         if (data.status?.code == 200) {
           console.log(data);
+          this.router.navigateByUrl("offers")
         } else {
           this.toast.show(data.status?.message)
         }

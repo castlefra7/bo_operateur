@@ -28,18 +28,22 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   signup(event: any) {
     event.preventDefault();
-    var dt = new Date(Date.now());
-    this.newCustomer.createdAt = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()} ${dt.getHours()}:${dt.getMinutes()}`;
-    console.log(this.newCustomer);
-    this.signupSub$ = this.service.signup(this.newCustomer)
-      .subscribe(data => {
-        if (data.status.code == 200) {
-          console.log(data);
-          this.succes = true;
-          this.phoneNumber = data.data[0].phone_number; 
-        } else {
-          this.toast.show(data.status.message)
-        }
-      });
+    if (this.newCustomer.name != null && this.newCustomer.email != null && this.newCustomer.password != null) {
+      var dt = new Date(Date.now());
+      this.newCustomer.createdAt = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getUTCDate()} ${dt.getHours()}:${dt.getMinutes()}`;
+      console.log(this.newCustomer);
+      this.signupSub$ = this.service.signup(this.newCustomer)
+        .subscribe(data => {
+          if (data.status.code == 200) {
+            console.log(data);
+            this.succes = true;
+            this.phoneNumber = data.data[0].phone_number; 
+          } else {
+            this.toast.show(data.status.message)
+          }
+        });
+    } else {
+      this.toast.show("Nom, Email et Mot de passe obligatoires")
+    }
   }
 }

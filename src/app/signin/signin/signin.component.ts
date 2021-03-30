@@ -44,30 +44,36 @@ export class SigninComponent implements OnInit {
     if (this.credentials.phoneNumber != null && this.credentials.pwd != null) {
       this.auth.login(this.credentials.phoneNumber, this.credentials.pwd)
         .subscribe(data => {
+          this.toast.show(data.status?.message)
             if (data.status?.code == 200) {
               localStorage.setItem(this.auth.AUTH_KEY, data.token!);
               this.route.navigateByUrl("");
             } else {
               this.toast.show(data.status?.message)
             }
-        });
+        },
+        error => this.toast.show(error))
+    } else{
+      this.toast.show("mot de passe et numéro obligatoires");
     }
   }
 
   signinAdmin(event : any) {
-    console.log("ato");
     event.preventDefault();
     if (this.admin.name != null && this.admin.pwd != null) {
       this.auth.loginAsAdmin(this.admin.name!, this.admin.pwd)
         .subscribe(data => {
-            if (data.status?.code != 500) {
+            if (data.status?.code == 200) {
               localStorage.setItem(this.auth.ADMIN_AUTH_KEY, data.token!);
               this.route.navigateByUrl("");
               console.log(data);
             } else{
-              this.toast.show(data.status.message)
+              this.toast.show(data.status?.message)
             }
-        });
+        },
+        error => this.toast.show(error));
+    } else{
+      this.toast.show("mot de passe et nom obligatoires");
     }
   }
 

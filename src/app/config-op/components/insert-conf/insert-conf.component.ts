@@ -49,7 +49,13 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     
     this.changeAppelSub$ = this.service.changeTarifAppels(this.tarifAppel)
       .subscribe(
-        data => console.log(data),
+        data => {
+          if (data.status?.code == 200) {
+            console.log(data);
+          } else {
+            this.toast.show(data.status?.message)
+          }
+        },
         error => this.toast.show(error.message)
         );
   }
@@ -60,7 +66,13 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     this.tarifMessage.application_id = 2;
     this.changeMessageSub$ = this.service.changeTarifMessage(this.tarifMessage)
       .subscribe(
-        data => console.log(data),
+        data => {
+          if (data.status?.code == 200) {
+            console.log(data);
+          } else {
+            this.toast.show(data.status?.message)
+          }
+        },
         error => this.toast.show(error.message)
       );
   }
@@ -70,7 +82,13 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     this.tarifInternet.date = this.currDate;
     this.changeInternetSub$ = this.service.changeTarifInternet(this.tarifInternet)
       .subscribe(
-        data => console.log(data),
+        data => {
+          if (data.status?.code == 200) {
+            console.log(data);
+          } else {
+            this.toast.show(data.status?.message)
+          }
+        },
         error => this.toast.show(error.message)
         );
   }
@@ -81,9 +99,11 @@ export class InsertConfComponent implements OnInit, OnDestroy {
     this.changeMobileMoneySub$ = this.service.changeFraisMobileMoney(this.fraisMobileMoney)
       .subscribe(
         data => {
-          if (data.status?.code !=  200) {
-            this.toast.show(data.status?.message);
-          } 
+          if (data.status?.code == 200) {
+            console.log(data);
+          } else {
+            this.toast.show(data.status?.message)
+          }
         },
         error => this.toast.show(error.message)
         );
