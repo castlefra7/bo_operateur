@@ -16,7 +16,7 @@
            {{ montant.utilization.intra.price }} /sec ou
             {{ montant.utilization.extra.price }} /sec A.O
         </td>
-        <td (click)="remove(idx)">
+        <td (click)="remove(idx)" *ngIf="showDelBtn">
             <button class="btn btn-primary">Supprimer</button>
         </td>
 </table>

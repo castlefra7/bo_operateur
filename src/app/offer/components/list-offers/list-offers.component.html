@@ -14,7 +14,7 @@
         <td> {{ offer.validityDay }} jours</td>
         <td>{{ offer.limitation!.buyingLimit }} fois sur {{ offer.limitation!.durationInDays }} j </td>
         <td>
-            <app-amount-list [amounts]="offer.amounts" ></app-amount-list>
+            <app-amount-list [showDelBtn]="false" [amounts]="offer.amounts" ></app-amount-list>
         </td>
         <td>{{ offers.isOneDay ? "oui" : "non" }}</td>
     </tr>

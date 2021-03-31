@@ -116,7 +116,7 @@ export class InsertofferComponent implements OnInit {
         internet_application_id : internetApp.internet_application_id,
         unit : {
           id: 1,
-          suffix : this.isUnlimited ? null :  value.unitName,
+          suffix : value.unitName,
         }
       },
       value : this.isUnlimited ? null :  value.value || -1, 
@@ -145,6 +145,15 @@ export class InsertofferComponent implements OnInit {
   ato(appName : string) {
     if (appName == "appel" && !this.isUnlimited && this.amountForm.controls['unitName'].value == "Ar") {
       this.pricing.findCallsPricing()
+        .subscribe(
+          data => {
+            this.amountForm.controls['intra'].setValue(data.data[0].amount_interior);
+            this.amountForm.controls['extra'].setValue(data.data[0].amount_exterior);
+          }
+        );
+    }
+    else if (appName == "message") {
+      this.pricing.findMessagePricing()
         .subscribe(
           data => {
             this.amountForm.controls['intra'].setValue(data.data[0].amount_interior);

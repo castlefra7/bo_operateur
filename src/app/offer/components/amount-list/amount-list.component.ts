@@ -9,7 +9,9 @@ import { Amount } from '../../offer';
 export class AmountListComponent implements OnInit {
 
   @Input() amounts : Amount[] = [];
+  @Input() showDelBtn : boolean = true;
   @Output() onDelete = new EventEmitter();
+
   
   constructor() { }
 
