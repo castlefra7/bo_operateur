@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Amount } from '../../offer';
 
 @Component({
@@ -9,10 +9,15 @@ import { Amount } from '../../offer';
 export class AmountListComponent implements OnInit {
 
   @Input() amounts : Amount[] = [];
-
+  @Output() onDelete = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  remove(idx : number) {
+    this.onDelete.emit(idx.toString());
   }
 
 }

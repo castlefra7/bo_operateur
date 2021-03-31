@@ -23,7 +23,9 @@ export interface Offer {
     validityDay?: number,
     priority?: number,
     limitation?: Limitation,
-    amounts?: Amount[]
+    amounts?: Amount[],
+    hourMin?: string,
+    hourMax?: string,
 }
 
 export interface Limitation {
@@ -32,6 +34,7 @@ export interface Limitation {
 }
 
 export interface Amount {
+    isUnlimited?: boolean,
     application?: Application,
     value?: number,
     utilization?: Utilization,

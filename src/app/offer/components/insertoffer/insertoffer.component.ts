@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Amount, Offer, Unit } from '../../offer';
 import { ApplicationService } from '../../services/application.service';
 import { OfferService, OfferType } from '../../services/offer.service';
+import { PricingService } from '../../services/pricing.service';
 import { UnitService } from '../../services/unit.service';
 
 @Component({
@@ -22,6 +23,8 @@ export class InsertofferComponent implements OnInit {
 
   units$! : Observable<Unit[]>;
 
+  isUnlimited = false;
+
   @ViewChild('toast') toast : any;
 
   constructor(
@@ -29,7 +32,8 @@ export class InsertofferComponent implements OnInit {
     private offerService: OfferService,
     private unitService : UnitService,
     private appService : ApplicationService,
-    private router: Router 
+    private router: Router,
+    private pricing : PricingService
     ) {
     this.allOfferTypes = offerService.getAllOfferTypes();
     this.myForm = fb.group(
@@ -42,10 +46,13 @@ export class InsertofferComponent implements OnInit {
         'buyingLimit': [2, Validators.required],
         'durationInDays': [7, Validators.required],
         'isOneDay': [false, Validators.required],
+        'hourMin' : [],
+        'hourMax' : []
       }
     );
     this.amountForm = fb.group({
       'appName' : [, Validators.required],
+      'isIllimited': [false, Validators.required],
       'value' : [null, Validators.required],
       'unitName' : ['', Validators.required],
       'intra' : [null],
@@ -64,11 +71,10 @@ export class InsertofferComponent implements OnInit {
 
   onSubmit(): void {
     const value = this.myForm.value;
-    if (value.code != null && value.name != null && value.addedAmounts != null && value.price != null && value.validityDay != null && value.buyingLimit != null && value.durationInDays) {
-
-    }
     const newOffer : Offer = {
       id: 1,
+      hourMin : value.hourMin || -1,
+      hourMax : value.hourMax || -1,
       code: value.code,
       isOneDay : value.isOneDay,
       createdAt : new Date(Date.now()).toISOString(),
@@ -81,12 +87,14 @@ export class InsertofferComponent implements OnInit {
         durationInDays: value.durationInDays || -1
       },
     };
+    console.log(newOffer);
+    
     this.offerService.insert(newOffer)
     .subscribe(
       data => {
         if (data.status?.code == 200) {
           console.log(data);
-          this.router.navigateByUrl("offers")
+          this.toast.show("Offre créée");
         } else {
           this.toast.show(data.status?.message)
         }
@@ -97,8 +105,10 @@ export class InsertofferComponent implements OnInit {
   onAmountsSub() : void {
     const value = this.amountForm.value;
     const internetApp =  this.applications.find((e: { name: any; }) => e.name == value.appName);
-    console.log(internetApp.name);
+    console.log(this.isUnlimited);
+    
     const newAmount : Amount = {
+      isUnlimited : this.isUnlimited,
       application : {
         id : 1,
         name : internetApp.name,
@@ -106,10 +116,10 @@ export class InsertofferComponent implements OnInit {
         internet_application_id : internetApp.internet_application_id,
         unit : {
           id: 1,
-          suffix : value.unitName,
+          suffix : this.isUnlimited ? null :  value.unitName,
         }
       },
-      value : value.value,
+      value : this.isUnlimited ? null :  value.value || -1, 
     };
 
     if (value.intra != null && value.extra != null) {
@@ -126,5 +136,25 @@ export class InsertofferComponent implements OnInit {
     }
     console.log(newAmount);
     this.addedAmounts.push(newAmount);
+  }
+
+  toggleIsLimitted(){
+    this.isUnlimited = !this.isUnlimited;
+  }
+
+  ato(appName : string) {
+    if (appName == "appel" && !this.isUnlimited && this.amountForm.controls['unitName'].value == "Ar") {
+      this.pricing.findCallsPricing()
+        .subscribe(
+          data => {
+            this.amountForm.controls['intra'].setValue(data.data[0].amount_interior);
+            this.amountForm.controls['extra'].setValue(data.data[0].amount_exterior);
+          }
+        );
+    }
+  }
+
+  remove(event : any) {
+    this.addedAmounts.splice(event, 1);
   }
 }

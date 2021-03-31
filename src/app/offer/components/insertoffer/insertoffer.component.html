@@ -15,6 +15,16 @@
       <label>Nom Offre:</label>
       <input class="input" [formControl]="myForm.controls['name']" type="text" />
     </div>
+    <div>
+      <div class="form-group">
+        <label>Heure début :</label>
+        <input  [formControl]="myForm.controls['hourMin']" class="input" type="text" name="hourMin" />
+      </div>
+      <div class="form-group">
+        <label>Heure fin :</label>
+        <input [formControl]="myForm.controls['hourMax']" class="input" type="text" name="hourMax" />
+      </div>
+    </div>
     <div class="form-group">
       <label>Durée de validité (en Jours):</label>
       <input class="input" [formControl]="myForm.controls['validityDay']" type="text" />
@@ -48,6 +58,7 @@
         name="applicationName"
         class="input select"
         [formControl]="amountForm.controls['appName']"
+        (ngModelChange)="ato(amountForm.controls['appName'].value)"
       >
         <option *ngFor="let app of applications" value="{{app.name}}">
           {{app.name}}
@@ -55,53 +66,62 @@
       </select>
     </div>
     <div class="form-group">
-      <label>Valeur:</label>
-      <input
-        type="number"
-        name="value"
-        placeholder="Valeur"
-        class="input"
-        [formControl]="amountForm.controls['value']"
-      />
+      <label>est illimité</label>
+      <input (ngModelChange)="toggleIsLimitted()" [formControl]="amountForm.controls['isIllimited']" type="checkbox" name="isIllimited" value="false" />
     </div>
-    <div class="form-group">
-      <label>Unité :</label>
-      <select [formControl]="amountForm.controls['unitName']" class="input select">
-        <option value="Sec">Sec</option>
-        <option value="Mn">Mn</option>
-        <option value="Hr">Hr</option>
-        <option value="Hr">Ar</option>
-        <option value="N">N</option>
-        <option value="Ko">Ko</option>
-        <option value="Mo">Mo</option>
-        <option value="Go">Go</option>
-      </select>
+
+    <div *ngIf="!isUnlimited"> 
+      <div class="form-group">
+        <label>Valeur:</label>
+        <input
+          type="number"
+          name="value"
+          placeholder="Valeur"
+          class="input"
+          [formControl]="amountForm.controls['value']"
+        />
+      </div>
+      <div class="form-group">
+        <label>Unité :</label>
+        <select [formControl]="amountForm.controls['unitName']" class="input select">
+          <option value="Sec">Sec</option>
+          <option value="Mn">Mn</option>
+          <option value="Hr">Hr</option>
+          <option value="Ar">Ar</option>
+          <option value="N">N</option>
+          <option value="Ko">Ko</option>
+          <option value="Mo">Mo</option>
+          <option value="Go">Go</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Prix intra opérateur:</label>
+        <input
+          type="number"
+          name="intra"
+          placeholder="Prix intra"
+          class="input"
+          [formControl]="amountForm.controls['intra']"
+        />
+      </div>
+      <div class="form-group">
+        <label>Prix extra opérateur:</label>
+        <input
+          type="number"
+          name="extra"
+          placeholder="Prix extra"
+          class="input"
+          [formControl]="amountForm.controls['extra']"
+        />
+      </div>
     </div>
-    <div class="form-group">
-      <label>Prix intra opérateur:</label>
-      <input
-        type="number"
-        name="intra"
-        placeholder="Prix intra"
-        class="input"
-        [formControl]="amountForm.controls['intra']"
-      />
-    </div>
-    <div class="form-group">
-      <label>Prix extra opérateur:</label>
-      <input
-        type="number"
-        name="extra"
-        placeholder="Prix extra"
-        class="input"
-        [formControl]="amountForm.controls['extra']"
-      />
-    </div>
+    
     <div class="form-group">
       <button class="btn btn-lg btn-primary sub">Ajouter</button>
     </div>
     <div class="form-group">
-      <app-amount-list [amounts]="addedAmounts"></app-amount-list>
+      <app-amount-list (onDelete)="remove($event)"  [amounts]="addedAmounts"></app-amount-list>
     </div>
   </form>
 </div>
