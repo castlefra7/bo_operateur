@@ -69,6 +69,19 @@
       <label>est illimité</label>
       <input (ngModelChange)="toggleIsLimitted()" [formControl]="amountForm.controls['isIllimited']" type="checkbox" name="isIllimited" value="false" />
     </div>
+    <div class="form-group">
+      <label>Unité :</label>
+      <select (ngModelChange)="ato(amountForm.controls['appName'].value)" [formControl]="amountForm.controls['unitName']" class="input select">
+        <option value="Sec">Sec</option>
+        <option value="Mn">Mn</option>
+        <option value="Hr">Hr</option>
+        <option value="Ar">Ar</option>
+        <option value="N">N</option>
+        <option value="Ko">Ko</option>
+        <option value="Mo">Mo</option>
+        <option value="Go">Go</option>
+      </select>
+    </div>
 
     <div *ngIf="!isUnlimited"> 
       <div class="form-group">
@@ -81,19 +94,7 @@
           [formControl]="amountForm.controls['value']"
         />
       </div>
-      <div class="form-group">
-        <label>Unité :</label>
-        <select [formControl]="amountForm.controls['unitName']" class="input select">
-          <option value="Sec">Sec</option>
-          <option value="Mn">Mn</option>
-          <option value="Hr">Hr</option>
-          <option value="Ar">Ar</option>
-          <option value="N">N</option>
-          <option value="Ko">Ko</option>
-          <option value="Mo">Mo</option>
-          <option value="Go">Go</option>
-        </select>
-      </div>
+
       
       <div class="form-group">
         <label>Prix intra opérateur:</label>

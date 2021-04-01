@@ -122,7 +122,7 @@ export class InsertofferComponent implements OnInit {
       value : this.isUnlimited ? null :  value.value || -1, 
     };
 
-    if (value.intra != null && value.extra != null) {
+    if (value.intra != null && value.extra != null && !this.isUnlimited) {
       newAmount["utilization"] = {
         intra : {
           price : value.intra,

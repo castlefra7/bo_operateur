@@ -5,9 +5,10 @@ import { InsertConfComponent } from './components/insert-conf/insert-conf.compon
 import { ConfigOpComponent } from './config-op.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ListConfigComponent } from './components/list-config/list-config.component';
 
 @NgModule({
-  declarations: [InsertConfComponent, ConfigOpComponent],
+  declarations: [InsertConfComponent, ConfigOpComponent, ListConfigComponent],
   imports: [
     CommonModule,
     ConfigOpRoutingModule,
