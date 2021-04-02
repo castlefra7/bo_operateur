@@ -3,7 +3,7 @@ h2 {
 }
 
 th {
-	background-color: rgb(83, 83, 83);
+	background-color: rgb(0, 7, 41);
 	color: white;
 	border: none;
 	font-size: small;
@@ -11,9 +11,15 @@ th {
 }
 
 td {
-	background-color: white;
+	background-color: rgb(238, 238, 238);
 	border: none;
 	font-family: 'Roboto';
 	font-size: small;
 	text-align: center;
 }
+
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+

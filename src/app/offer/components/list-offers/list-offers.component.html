@@ -2,6 +2,7 @@
 <table class="table">
     <tr>
         <th>Nom</th>
+        <th>Code</th>
         <th>Prix</th>
         <th>Validité</th>
         <th>Limitation</th>
@@ -10,6 +11,7 @@
     </tr>
     <tr *ngFor="let offer of offers">
         <td class="orange">{{ offer.name }}</td>
+        <td>{{ offer.code }}</td>
         <td>{{ offer.price }} Ar</td>
         <td> {{ offer.validityDay }} jours</td>
         <td>{{ offer.limitation!.buyingLimit }} fois sur {{ offer.limitation!.durationInDays }} j </td>
