@@ -8,6 +8,6 @@
     <tr *ngFor="let history of callsHistories">
         <td>{{ history.created_at | date}}</td>
         <td>{{ history.phone_number }}</td>
-        <td>{{ history.amount }} mins</td>
+        <td>{{ history.amount * 1000 | date: 'HH:mm:ss':'UTC' }}</td>
     </tr>
 </table>
