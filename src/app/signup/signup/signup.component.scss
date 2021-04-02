@@ -1,11 +1,17 @@
 .form {
     margin: 0 auto;
-    width:500px;
+    width: inherit;
+    max-width: 500px;
     margin-bottom: 20px;
 }
 
 h1 {
     font-family: 'Roboto Thin';
+}
+
+.cnt {
+    width: 90%;
+    margin: 0 auto;
 }
 
 .input {

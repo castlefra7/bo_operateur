@@ -10,6 +10,7 @@ import { ToastService } from './services/toast.service';
 })
 export class AppComponent {
   title = 'operateur-back';
+  showMobilemenu = false;
 
   constructor(
     private http: HttpClient,
@@ -18,10 +19,13 @@ export class AppComponent {
     ) {}
 
   ngOnInit() {
-    /*const headers = {'Content-Type': 'application/json'};
+  }
 
-    this.http.post('http://localhost:8080/mobilemoney/deposit', JSON.stringify({amount: 10000, phone_number: '0342569356', date: new Date()}), {headers}).subscribe(response => console.log(response));  }
+  mobileMenu() {
+    this.showMobilemenu = !this.showMobilemenu;
+  }
 
-    his.http.get('http://localhost:8080/mobilemoney').subscribe(response => console.log(response));  }*/
+  close() {
+    this.showMobilemenu = false;
   }
 }

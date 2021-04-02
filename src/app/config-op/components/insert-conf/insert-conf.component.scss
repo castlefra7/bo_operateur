@@ -7,8 +7,13 @@
 
 .form {
     margin: 0 auto;
-    width:500px;
+    width:75%;
+    max-width: 500px;
     margin-bottom: 20px;
+}
+
+.form-group {
+    width: 100%;
 }
 
 h1 {
@@ -16,7 +21,7 @@ h1 {
 }
 
 .input {
-    width: 100%;
+    width: inherit;
     padding: 5px 20px;
     margin: 8px 0;
     box-sizing: border-box;

@@ -8,9 +8,9 @@ import { CallsPricing, InternetPricing, MessagePricing, PricingService } from 's
 })
 export class ListConfigComponent implements OnInit {
 
-  messagePricing : MessagePricing | undefined;
-  callsPricing : CallsPricing | undefined;
-  internetPricing : InternetPricing | undefined;
+  messagePricing: MessagePricing = { amount_exterior: 0, amount_interior: 0, created_at : "", unit : 0 };
+  callsPricing : CallsPricing = { amount_exterior: 0, amount_interior: 0, created_at : "" };
+  internetPricing : InternetPricing = { amount: 0, created_at:"" };
 
   constructor(
     private pricing : PricingService

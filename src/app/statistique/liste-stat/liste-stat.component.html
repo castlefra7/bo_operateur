@@ -1,28 +1,30 @@
 <h2></h2>
 
-<form class="form"> 
-    <label>Offres les plus utilisées jusqu'au </label>
-    <div class="form-group">
-        <input name="date" [(ngModel)]="date" class="input" type="date" />
+<div class="container">
+    <form class="form"> 
+        <label>Offres les plus utilisées jusqu'au </label>
+        <div class="form-group">
+            <input name="date" [(ngModel)]="date" class="input" type="date" />
+        </div>
+        <div class="form-group">
+            <button (click)="onSubmit()" type="submit" class="btn btn-lg btn-primary sub">
+              Valider
+            </button>
+          </div>
+    </form>
+    
+    <table class="table">
+        <tr>
+            <th>Offre</th>
+            <th>Utilisation</th>
+        </tr>
+        <tr *ngFor="let stat of stats">
+            <td>{{ stat.name }}</td>
+            <td>{{ stat.count }}</td>
+        </tr>
+    </table>
+    
+    <div>
+        <app-charts-info></app-charts-info>
     </div>
-    <div class="form-group">
-        <button (click)="onSubmit()" type="submit" class="btn btn-lg btn-primary sub">
-          Valider
-        </button>
-      </div>
-</form>
-
-<table class="table">
-    <tr>
-        <th>Offre</th>
-        <th>Utilisation</th>
-    </tr>
-    <tr *ngFor="let stat of stats">
-        <td>{{ stat.name }}</td>
-        <td>{{ stat.count }}</td>
-    </tr>
-</table>
-
-<div>
-    <app-charts-info></app-charts-info>
 </div>
